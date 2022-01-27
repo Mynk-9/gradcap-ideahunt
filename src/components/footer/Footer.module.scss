@@ -1,0 +1,20 @@
+@mixin _section {
+    display: flex;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    padding: 5rem 3rem;
+
+    background: var(--blue-gradient);
+
+    .section-address {
+        @include _section;
+        flex-direction: column;
+    }
+    .section-links {
+        @include _section;
+        flex-direction: row;
+    }
+}
