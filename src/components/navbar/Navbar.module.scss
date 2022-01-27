@@ -1,0 +1,15 @@
+.nav {
+    display: flex;
+    flex-direction: row;
+
+    .item {
+        display: flex;
+        justify-content: space-around;
+
+        padding: 3rem;
+    }
+    .item:first-child {
+        flex: 1;
+        justify-content: flex-start;
+    }
+}
