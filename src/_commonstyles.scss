@@ -1,3 +1,5 @@
+// will be imported in App.scss
+
 // color palette
 :root {
     --section-color: #fff;
@@ -7,24 +9,14 @@
         padding-box;
     --text-color: #8e8e8e;
     --heading-color: #6a6a6a;
+
+    --side-nav-text-active: #012d35;
+    --side-nav-text-inactive: #6a6a6a;
 }
 
 // standard values
 :root {
-    --std-radius: 1.375rem;
-}
-
-.page-section {
-    background-color: var(--section-color);
-    // width = approx 71.5% of full width in 1920
-    // approximating it to 70vw here
-    max-width: 70vw;
-    margin-left: auto;
-    margin-right: auto;
-    color: var(--text-color);
-
-    h1:first-child {
-        margin-bottom: 8.125rem;
-        color: var(--heading-color);
-    }
+    --std-radius-small: 1rem; // 15px -> 16px
+    --std-radius: 1.375rem; // 22px
+    --std-radius-big: 3.375rem; // 54px
 }
