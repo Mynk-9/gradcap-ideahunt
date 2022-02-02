@@ -1,0 +1,31 @@
+.sideNav {
+    display: flex;
+    flex-direction: column;
+
+    // min-width: 17rem; // 270 was mean of 311 and 230, 272 is 17rem
+    min-width: 15vw;
+
+    .sideNavButton {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        height: 13rem; // 207 -> 208px
+        width: 13rem;
+        background-color: transparent;
+        outline: none;
+        border: none;
+
+        margin: 3.375rem;
+        border-radius: var(--std-radius-small);
+        color: var(--side-nav-text-inactive);
+
+        cursor: pointer;
+    }
+    .sideNavButton[linkActive='true'] {
+        color: var(--side-nav-text-active);
+        background-color: #fff;
+        box-shadow: 0px 3px 6px #00000029;
+    }
+}
