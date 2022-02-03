@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Footer from './components/footer/Footer';
@@ -16,6 +17,12 @@ import RewardsIconInactive from './assets/icons/award-inactive.svg';
 import RewardsIconActive from './assets/icons/award-active.svg';
 
 const App = () => {
+    useEffect(() => {
+        const ratio = window.innerWidth / 1920;
+        const fontSize = 16 * ratio;
+        document.styleSheets[0].insertRule(`:root { font-size: ${fontSize}px}`);
+    }, []);
+
     return (
         <>
             <Navbar />
