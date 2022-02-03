@@ -1,4 +1,65 @@
-.main {
-    padding: 2rem 3.5rem;
-    min-height: calc(100vh - 6rem);
+.heading {
+    font-family: 'tex-bold';
+    color: var(--heading-color);
+    font-size: 2.25rem; // 36px
+}
+
+.toolsPanel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+
+    .postIdea {
+        outline: none;
+        border: none;
+        margin: 0;
+        padding: 0.75rem 4rem;
+        border-radius: 0.5rem;
+        box-shadow: none;
+        color: white;
+        font-family: 'tex-bold';
+
+        background-color: var(--button-blue-back);
+
+        cursor: pointer;
+    }
+}
+
+.pageColumnWrapper {
+    display: flex;
+    flex-direction: row;
+
+    .pageColumn:first-child {
+        width: 75%;
+    }
+
+    .pageColumn:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        img {
+            margin-right: -10rem;
+        }
+    }
+}
+
+.rewards {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & > * {
+        flex: 1;
+    }
+
+    p {
+        font-size: 1.875rem;
+    }
+
+    img {
+        padding: 6.5rem 4rem;
+        max-width: 60%;
+    }
 }
