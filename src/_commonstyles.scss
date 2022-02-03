@@ -7,6 +7,7 @@
     --blue-gradient: transparent
         linear-gradient(90deg, #a3a4e8 0%, #133643 100%) 0% 0% no-repeat
         padding-box;
+    --button-blue-back: #52668b;
     --text-color: #8e8e8e;
     --heading-color: #6a6a6a;
 
@@ -19,4 +20,6 @@
     --std-radius-small: 1rem; // 15px -> 16px
     --std-radius: 1.375rem; // 22px
     --std-radius-big: 3.375rem; // 54px
+
+    --std-transition-time: 0.5s;
 }
