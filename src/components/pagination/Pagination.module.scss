@@ -1,0 +1,24 @@
+.pagination {
+    --active-page-color: #002e36;
+    --inactive-page-color: #6a6a6a;
+
+    text-align: center;
+
+    .pageNumber {
+        background-color: transparent;
+        outline: none;
+        border: none;
+
+        color: var(--inactive-page-color);
+        font-family: 'tex-bold';
+
+        cursor: pointer;
+    }
+    .pageNumber[active='true'] {
+        color: var(--active-page-color);
+        text-decoration: underline;
+    }
+    .nextPage {
+        color: var(--active-page-color);
+    }
+}
