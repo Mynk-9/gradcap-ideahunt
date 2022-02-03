@@ -8,9 +8,12 @@ import IdeaPanel from './pages/ideapanel/IdeaPanel';
 
 import './App.scss';
 
-import HomeIcon from './assets/images/home.svg';
-import IdeaPanelIcon from './assets/images/message-square.svg';
-import RewardsIcon from './assets/images/award.svg';
+import HomeIconInactive from './assets/icons/home-inactive.svg';
+import HomeIconActive from './assets/icons/home-active.svg';
+import IdeaPanelIconInactive from './assets/icons/message-square-inactive.svg';
+import IdeaPanelIconActive from './assets/icons/message-square-active.svg';
+import RewardsIconInactive from './assets/icons/award-inactive.svg';
+import RewardsIconActive from './assets/icons/award-active.svg';
 
 const App = () => {
     return (
@@ -21,17 +24,20 @@ const App = () => {
                     buttons={[
                         {
                             text: 'Home',
-                            icon: HomeIcon,
+                            iconInactive: HomeIconInactive,
+                            iconActive: HomeIconActive,
                             path: '/home',
                         },
                         {
                             text: 'Idea Panel',
-                            icon: IdeaPanelIcon,
+                            iconInactive: IdeaPanelIconInactive,
+                            iconActive: IdeaPanelIconActive,
                             path: '/idea-panel',
                         },
                         {
                             text: 'Rewards',
-                            icon: RewardsIcon,
+                            iconInactive: RewardsIconInactive,
+                            iconActive: RewardsIconActive,
                             path: '/rewards',
                         },
                     ]}

@@ -1,9 +1,30 @@
 @import url('./_commonstyles.scss');
 
+@font-face {
+    font-family: 'tex-regular';
+    src: url('./assets/fonts/tex-gyre-adventor/texgyreadventor-regular.otf');
+}
+@font-face {
+    font-family: 'tex-italic';
+    src: url('./assets/fonts/tex-gyre-adventor/texgyreadventor-italic.otf');
+}
+@font-face {
+    font-family: 'tex-bold';
+    src: url('./assets/fonts/tex-gyre-adventor/texgyreadventor-bold.otf');
+}
+@font-face {
+    font-family: 'tex-bold-italic';
+    src: url('./assets/fonts/tex-gyre-adventor/texgyreadventor-bolditalic.otf');
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
     background-color: var(--body-back);
+    font-family: 'tex-regular';
+}
+button {
+    font-family: 'tex-regular';
 }
