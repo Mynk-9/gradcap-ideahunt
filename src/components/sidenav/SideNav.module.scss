@@ -22,6 +22,15 @@
         color: var(--side-nav-text-inactive);
 
         cursor: pointer;
+
+        .text {
+            font-size: 1.875rem; // 30px
+            font-family: 'tex-regular';
+        }
+
+        img {
+            width: 2rem;
+        }
     }
     .sideNavButton[linkActive='true'] {
         color: var(--side-nav-text-active);

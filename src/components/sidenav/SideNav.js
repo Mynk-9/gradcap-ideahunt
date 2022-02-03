@@ -11,9 +11,13 @@ const SideNavButton = data => {
         <button
             className={Styles.sideNavButton}
             onClick={() => navigate(data.path)}
-            linkActive={location.pathname === data.path ? 'true' : 'false'}
+            linkactive={location.pathname === data.path ? 'true' : 'false'}
         >
-            <img src={data.icon} alt={data.text} />
+            {location.pathname === data.path ? (
+                <img src={data.iconActive} alt={data.text} />
+            ) : (
+                <img src={data.iconInactive} alt={data.text} />
+            )}
             <span className={Styles.text}>{data.text}</span>
         </button>
     );
@@ -31,7 +35,8 @@ const SideNav = ({ buttons }) => {
 
 const dataShapePropType = propTypes.shape({
     text: propTypes.string.isRequired,
-    icon: propTypes.string.isRequired,
+    iconInactive: propTypes.string.isRequired,
+    iconActive: propTypes.string.isRequired,
     path: propTypes.string.isRequired,
 });
 
