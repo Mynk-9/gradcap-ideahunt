@@ -1,20 +1,37 @@
-@mixin _section {
-    display: flex;
-}
-
 .footer {
     display: flex;
     flex-direction: row;
-    padding: 5rem 3rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 5rem;
 
     background: var(--blue-gradient);
 
-    .section-address {
-        @include _section;
+    .sectionAddress {
+        display: flex;
         flex-direction: column;
+
+        font-family: 'tex-bold';
+        color: white;
+        font-size: 1.5rem;
     }
-    .section-links {
-        @include _section;
+    .sectionLinks {
+        display: flex;
         flex-direction: row;
+
+        .logo {
+            width: revert;
+            height: 2rem;
+            filter: revert;
+        }
+
+        img {
+            filter: invert(1);
+            width: 2rem;
+            margin-right: 2rem;
+        }
+        img:last-child {
+            margin-right: 0;
+        }
     }
 }
