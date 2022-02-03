@@ -1,0 +1,94 @@
+.accordion {
+    --std-transition-time: 0s;
+
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: 1rem;
+    border-radius: var(--std-radius);
+
+    font-size: 1.25rem;
+
+    .panel {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        color: white;
+        background: var(--blue-gradient);
+        padding: 1.5rem 1.875rem;
+        border-radius: var(--std-radius);
+
+        box-shadow: 0px 3px 6px #00000029;
+
+        .panelSection {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .panelItem {
+            display: flex;
+            flex-direction: column;
+            padding-right: 2.625rem;
+
+            .stats {
+                font-family: 'tex-regular';
+                font-size: 1rem;
+                text-align: center;
+                margin-top: 0.2rem;
+            }
+
+            img {
+                filter: invert(1);
+                width: 2rem;
+            }
+            img.expandButton {
+                transform: scale(2);
+                transition: transform var(--std-transition-time) ease;
+                cursor: pointer;
+            }
+        }
+
+        .panelItem.profileItem {
+            padding-right: 1.625rem;
+
+            img {
+                width: 5.25rem;
+                height: 5.25rem;
+                filter: none;
+            }
+        }
+        .panelItem:last-child {
+            padding-right: 0;
+        }
+
+        .brief {
+            font-weight: bold;
+        }
+    }
+
+    .details {
+        display: none;
+        margin-top: -2rem;
+        padding: 1.5rem; // 24px
+        padding-top: calc(1.25rem + 2rem); // 20px + margin-top
+
+        color: var(--text-color);
+        box-shadow: inset 0px 3px 6px #00000029;
+
+        .ideaDetails {
+            margin-bottom: 0.875rem;
+        }
+        .viewIdea {
+            font-family: 'tex-bold';
+        }
+    }
+}
+.accordion[active='true'] {
+    .details {
+        display: initial;
+    }
+    img.expandButton {
+        transform: rotateZ(90deg) scale(2) !important;
+    }
+}
