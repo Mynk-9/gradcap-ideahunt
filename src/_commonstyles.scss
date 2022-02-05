@@ -13,6 +13,7 @@
 
     --side-nav-text-active: #012d35;
     --side-nav-text-inactive: #6a6a6a;
+    --side-nav-back-color: #efefef;
 }
 
 // standard values
@@ -22,4 +23,23 @@
     --std-radius-big: 3.375rem; // 54px
 
     --std-transition-time: 0.5s;
+}
+
+// element rendering if on mobile
+[data-mobile-only] {
+    @media screen and (min-width: 768px) {
+        display: none !important;
+    }
+}
+[data-pc-only] {
+    @media screen and (max-width: 768px) {
+        display: none !important;
+    }
+}
+
+// changes if rendering on mobile
+@media screen and (max-width: 768px) {
+    :root {
+        --body-back: white;
+    }
 }
