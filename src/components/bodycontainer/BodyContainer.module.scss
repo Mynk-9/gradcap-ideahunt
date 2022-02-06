@@ -1,4 +1,9 @@
 .bodyContainer {
     display: flex;
     flex-direction: row;
+
+    @media screen and (max-width: 768px) {
+        display: block;
+        flex-direction: initial;
+    }
 }
