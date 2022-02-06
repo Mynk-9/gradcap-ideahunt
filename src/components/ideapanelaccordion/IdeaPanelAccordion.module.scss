@@ -8,6 +8,11 @@
 
     font-size: 1.25rem;
 
+    @media screen and (max-width: 768px) {
+        font-size: 0.625rem;
+        margin-bottom: 0.313rem; // 5px
+    }
+
     .panel {
         display: flex;
         flex-direction: row;
@@ -20,6 +25,10 @@
 
         box-shadow: 0px 3px 6px #00000029;
 
+        @media screen and (max-width: 768px) {
+            padding: 0.5rem;
+        }
+
         .panelSection {
             display: flex;
             flex-direction: row;
@@ -31,31 +40,56 @@
             flex-direction: column;
             padding-right: 2.625rem;
 
+            @media screen and (max-width: 768px) {
+                padding-right: 1rem;
+            }
+
             .stats {
                 font-family: 'tex-regular';
                 font-size: 1rem;
                 text-align: center;
                 margin-top: 0.2rem;
+
+                @media screen and (max-width: 768px) {
+                    font-size: 0.375rem;
+                }
             }
 
             img {
                 filter: invert(1);
                 width: 2rem;
+
+                @media screen and (max-width: 768px) {
+                    width: 1rem;
+                }
             }
             img.expandButton {
                 transform: scale(2);
                 transition: transform var(--std-transition-time) ease;
                 cursor: pointer;
+
+                @media screen and (max-width: 768px) {
+                    transform: scale(1.5);
+                }
             }
         }
 
         .panelItem.profileItem {
             padding-right: 1.625rem;
 
+            @media screen and (max-width: 768px) {
+                padding-right: 0.5rem;
+            }
+
             img {
                 width: 5.25rem;
                 height: 5.25rem;
                 filter: none;
+
+                @media screen and (max-width: 768px) {
+                    width: 2.18rem; // 35px
+                    height: 2.18rem;
+                }
             }
         }
         .panelItem:last-child {
@@ -90,5 +124,9 @@
     }
     img.expandButton {
         transform: rotateZ(90deg) scale(2) !important;
+
+        @media screen and (max-width: 768px) {
+            transform: rotateZ(90deg) scale(1.5) !important;
+        }
     }
 }
