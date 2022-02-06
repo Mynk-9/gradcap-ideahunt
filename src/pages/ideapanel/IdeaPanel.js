@@ -37,7 +37,7 @@ const IdeaPanel = () => {
     let navigate = useNavigate();
 
     return (
-        <PrimarySection hero={false}>
+        <PrimarySection hero={false} styles={{ paddingRight: 0 }}>
             <Heading>{'Idea Panel'}</Heading>
             <div className={Styles.pageColumnWrapper}>
                 <div className={Styles.pageColumn}>
