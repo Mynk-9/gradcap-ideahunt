@@ -1,0 +1,17 @@
+.redButton {
+    padding: 1rem 2rem;
+    color: white;
+    background-color: #c86374;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 0.56rem;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    font-family: 'tex-bold';
+
+    @media screen and (max-width: 768px) {
+        font-size: 0.75rem;
+        padding: 0.125rem 0.365rem;
+        border-radius: 0.375rem;
+    }
+}
