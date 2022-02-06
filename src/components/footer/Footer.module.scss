@@ -7,6 +7,10 @@
 
     background: var(--blue-gradient);
 
+    @media screen and (max-width: 768px) {
+        padding: 1.625rem 1.125rem;
+    }
+
     .sectionAddress {
         display: flex;
         flex-direction: column;
@@ -14,6 +18,10 @@
         font-family: 'tex-bold';
         color: white;
         font-size: 1.5rem;
+
+        @media screen and (max-width: 768px) {
+            font-size: 0.5rem;
+        }
     }
     .sectionLinks {
         display: flex;
@@ -23,12 +31,21 @@
             width: revert;
             height: 2rem;
             filter: revert;
+
+            @media screen and (max-width: 768px) {
+                height: 0.75rem;
+            }
         }
 
         img {
             filter: invert(1);
             width: 2rem;
             margin-right: 2rem;
+
+            @media screen and (max-width: 768px) {
+                width: 0.75rem;
+                margin-right: 0.75rem;
+            }
         }
         img:last-child {
             margin-right: 0;
