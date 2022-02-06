@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import SidebarContext from '../../contexts/SidebarContext';
+import SidenavContext from '../../contexts/SidenavContext';
 
 import Styles from './Navbar.module.scss';
 
@@ -10,7 +10,7 @@ import UserIcon from './../../assets/icons/user-profile.svg';
 import Hamburger from './../../assets/icons/hamburger.svg';
 
 const Navbar = () => {
-    const { setActive } = useContext(SidebarContext);
+    const { setActive } = useContext(SidenavContext);
 
     return (
         <nav className={Styles.nav}>
