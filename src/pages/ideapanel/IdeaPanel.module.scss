@@ -2,13 +2,24 @@
     font-family: 'tex-bold';
     color: var(--heading-color);
     font-size: 2.25rem; // 36px
+
+    @media screen and (max-width: 768px) {
+        font-size: 1.25rem;
+    }
 }
 
 .toolsPanel {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 1.5rem;
+
+    select {
+        @media screen and (max-width: 768px) {
+            font-size: 0.5rem;
+        }
+    }
 
     .postIdea {
         outline: none;
@@ -23,6 +34,11 @@
         background-color: var(--button-blue-back);
 
         cursor: pointer;
+
+        @media screen and (max-width: 768px) {
+            font-size: 0.625rem;
+            padding: 0.25rem 1.25rem;
+        }
     }
 }
 
@@ -32,6 +48,10 @@
 
     .pageColumn:first-child {
         width: 75%;
+
+        @media screen and (max-width: 768px) {
+            width: 100%;
+        }
     }
 
     .pageColumn:nth-child(2) {
@@ -50,16 +70,28 @@
     flex-direction: row;
     align-items: center;
 
+    @media screen and (max-width: 768px) {
+        padding-top: 1.75rem;
+    }
+
     & > * {
         flex: 1;
     }
 
     p {
         font-size: 1.875rem;
+
+        @media screen and (max-width: 768px) {
+            font-size: 0.625rem;
+        }
     }
 
     img {
         padding: 6.5rem 4rem;
         max-width: 60%;
+
+        @media screen and (max-width: 768px) {
+            padding: 0.625rem;
+        }
     }
 }

@@ -69,7 +69,7 @@ const IdeaPanel = () => {
                         }
                     />
                 </div>
-                <div className={Styles.pageColumn}>
+                <div className={Styles.pageColumn} data-pc-only>
                     <img src={Img1} />
                     <img src={Img2} />
                     <img src={Img3} />
