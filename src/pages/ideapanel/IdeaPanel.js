@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PrimarySection from '../../components/primarysection/PrimarySection';
 import IdeaPanelAccordion from '../../components/ideapanelaccordion/IdeaPanelAccordion';
 import Pagination from '../../components/pagination/Pagination';
+import Heading from '../../components/heading/Heading';
 
 import Styles from './IdeaPanel.module.scss';
 
@@ -37,7 +38,7 @@ const IdeaPanel = () => {
 
     return (
         <PrimarySection hero={false}>
-            <h1 className={Styles.heading}>{'Idea Panel'}</h1>
+            <Heading>{'Idea Panel'}</Heading>
             <div className={Styles.pageColumnWrapper}>
                 <div className={Styles.pageColumn}>
                     <div className={Styles.toolsPanel}>
@@ -77,7 +78,7 @@ const IdeaPanel = () => {
             </div>
             <div className={Styles.rewards}>
                 <div className={Styles.message}>
-                    <h1 className={Styles.heading}>{'Rewards'}</h1>
+                    <Heading>{'Rewards'}</Heading>
                     <p>
                         {
                             'We offer a number of rewards for some of the best ideas that we carefully study and curate!'

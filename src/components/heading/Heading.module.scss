@@ -1,0 +1,9 @@
+.heading {
+    font-family: 'tex-bold';
+    color: var(--heading-color);
+    font-size: 2.25rem; // 36px
+
+    @media screen and (max-width: 768px) {
+        font-size: 1.25rem;
+    }
+}
