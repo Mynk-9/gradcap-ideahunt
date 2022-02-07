@@ -1,0 +1,100 @@
+.form {
+    --border-color: #e6e6e6;
+    --error-border-color: #c86374;
+    --font-color: var(--heading-color);
+
+    padding: calc(2.75rem - 0.67rem) 0 2.75rem 0; // 0.67rem is margin of heading
+    font-size: 1.875rem;
+
+    @media screen and (max-width: 768px) {
+        font-size: 0.875rem;
+    }
+
+    & > div:nth-child(n + 2) {
+        margin-top: 3.5rem;
+    }
+
+    & > div[data-valid='false'] {
+        border-color: var(--error-border-color);
+    }
+
+    .ideaNameWrapper {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px solid var(--border-color);
+        width: 80%;
+
+        @media screen and (max-width: 768px) {
+            width: 100%;
+        }
+
+        &:focus {
+            border-color: var(--font-color);
+        }
+
+        .ideaName {
+            flex: 1;
+            border: none;
+            outline: 0;
+            line-height: 1.5;
+
+            color: var(--font-color);
+        }
+        .ideaName::placeholder {
+            flex: 0;
+            color: var(--border-color);
+        }
+
+        .ideaNameIcon {
+            filter: invert(0.5);
+        }
+    }
+
+    .ideaDescWrapper {
+        padding: 1rem 2.25rem;
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+
+        @media screen and (max-width: 768px) {
+            padding: 0.438rem 0.875rem;
+        }
+
+        .ideaDesc {
+            color: var(--font-color);
+            border: 0;
+            outline: none;
+            width: 100%;
+            resize: vertical;
+            height: 25rem;
+
+            &:focus {
+                border-color: var(--font-color);
+            }
+        }
+        .ideaDesc::placeholder {
+            color: var(--border-color);
+        }
+    }
+
+    .warning {
+        display: none;
+        color: var(--error-border-color);
+        font-size: 1rem;
+
+        @media screen and (max-width: 768px) {
+            font-size: 0.5rem;
+        }
+
+        &[data-valid='false'] {
+            display: initial;
+        }
+    }
+
+    .postButton {
+        padding: 0.875rem 4.5rem;
+
+        @media screen and (max-width: 768px) {
+            padding: 0.5rem 2.5rem;
+        }
+    }
+}
