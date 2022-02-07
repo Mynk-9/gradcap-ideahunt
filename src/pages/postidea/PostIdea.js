@@ -16,7 +16,7 @@ const PostIdea = () => {
     const [descValid, setDescValid] = useState('true');
 
     const nameSizeLimit = 50;
-    const descSizeLimit = 500;
+    const descSizeLimit = 100;
 
     const handleIdeaNameChange = e => {
         const name = e.target.value;
@@ -52,7 +52,7 @@ const PostIdea = () => {
                 <div className={Styles.ideaDescWrapper} data-valid={descValid}>
                     <textarea
                         className={Styles.ideaDesc}
-                        placeholder={`Describe your idea in max. ${descSizeLimit} words`}
+                        placeholder={`Describe your idea in max. ${descSizeLimit} characters`}
                         value={ideaDesc}
                         onChange={handleIdeaDescChange}
                     />
