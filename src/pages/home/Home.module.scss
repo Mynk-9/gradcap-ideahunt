@@ -1,0 +1,173 @@
+.hero {
+    display: flex;
+    align-items: center;
+    padding: 8.125rem;
+    height: 70vh; // 764px
+
+    color: white;
+    font-size: 1.875rem; // 30px
+    background: transparent linear-gradient(180deg, #a6a6eb 0%, #082d36 100%) 0%
+        0% no-repeat padding-box;
+    border-radius: var(--std-radius-big) var(--std-radius-big) 0 0;
+
+    @media screen and (max-width: 768px) {
+        height: 30vh; // 244px
+        padding: 2.125rem;
+        font-size: 0.625rem;
+        border-radius: 0;
+    }
+
+    & > div {
+        width: 50%;
+    }
+
+    .ideaHuntLogo {
+        height: 4.5rem;
+        margin-bottom: 0.5rem;
+
+        @media screen and (max-width: 768px) {
+            height: 1.75rem;
+        }
+    }
+    .heroArt {
+        height: 47rem;
+        margin: 0 -10rem;
+
+        @media screen and (max-width: 768px) {
+            height: 14rem;
+        }
+    }
+}
+
+.contentWrapper {
+    padding: 8.125rem;
+
+    @media screen and (max-width: 768px) {
+        padding: 1.5rem;
+    }
+
+    .chainSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 8rem 0;
+        padding-top: 0;
+
+        @media screen and (max-width: 768px) {
+            padding: 1rem 0;
+        }
+
+        img {
+            margin-bottom: 8rem;
+            height: 6.125rem;
+
+            @media screen and (max-width: 768px) {
+                height: 2rem;
+                margin-bottom: 2.5rem;
+            }
+        }
+    }
+
+    .monthlyWinners {
+        text-align: center;
+        margin-bottom: -3.25rem; // = -ve bottom margin of card
+
+        @media screen and (max-width: 768px) {
+            margin-bottom: -1rem;
+        }
+
+        .card {
+            display: inline-block;
+
+            padding: 2.75rem 1.5rem;
+            margin-bottom: 3.25rem;
+            // margin-right: 3.25rem;
+            box-shadow: 0px 6px 9px #00000029;
+            border-radius: var(--std-radius);
+
+            min-width: 18rem;
+
+            @media screen and (max-width: 768px) {
+                padding: 0.75rem 0.375rem;
+                margin-top: 1rem;
+                margin-bottom: 0;
+                margin-left: 0;
+                // margin-right: 1rem;
+                min-width: 5rem;
+            }
+
+            .cardContent {
+                display: flex;
+                flex-direction: row;
+
+                & > div:nth-child(2) {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+                    margin-left: 1rem;
+
+                    color: #707070;
+                    font-size: 1.25rem;
+                    font-family: 'tex-bold';
+
+                    @media screen and (max-width: 768px) {
+                        min-width: 6.25rem;
+                        font-size: 0.75rem;
+                        margin-left: 0;
+                    }
+                }
+
+                img {
+                    width: 5.25rem;
+
+                    @media screen and (max-width: 768px) {
+                        width: 1.625rem;
+                    }
+                }
+            }
+        }
+        .card:nth-child(3n + 2),
+        .card:nth-child(3n + 1) {
+            @media screen and (min-width: 768px) {
+                // !!! media query flipped here !!!
+                margin-right: 3.25rem;
+            }
+        }
+        .card:nth-child(2n + 1) {
+            @media screen and (max-width: 768px) {
+                margin-right: 1rem;
+            }
+        }
+    }
+
+    .rewards {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        @media screen and (max-width: 768px) {
+            padding-top: 1.75rem;
+        }
+
+        & > * {
+            flex: 1;
+        }
+
+        p {
+            font-size: 1.875rem;
+
+            @media screen and (max-width: 768px) {
+                font-size: 0.625rem;
+            }
+        }
+
+        img {
+            padding: 6.5rem 4rem;
+            max-width: 60%;
+
+            @media screen and (max-width: 768px) {
+                padding: 0.625rem;
+            }
+        }
+    }
+}

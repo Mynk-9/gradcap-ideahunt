@@ -6,6 +6,7 @@ import Navbar from './components/navbar/Navbar';
 import BodyContainer from './components/bodycontainer/BodyContainer';
 import SideNav from './components/sidenav/SideNav';
 import IdeaPanel from './pages/ideapanel/IdeaPanel';
+import Home from './pages/home/Home';
 import PostIdea from './pages/postidea/PostIdea';
 
 import SidenavContext from './contexts/SidenavContext';
@@ -71,7 +72,8 @@ const App = () => {
                     pcVisible={true}
                 />
                 <Routes>
-                    <Route exact path="/" element={<></>} />
+                    <Route exact path="/" element={<Home />} />
+                    <Route path="/home" element={<Home />} />
                     <Route path="/idea-panel" element={<IdeaPanel />} />
                     <Route path="/post-idea" element={<PostIdea />} />
                 </Routes>
