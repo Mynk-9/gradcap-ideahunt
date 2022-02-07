@@ -25,7 +25,7 @@ const App = () => {
     const [sidenavActive, setSidenavActive] = useState(false);
 
     useEffect(() => {
-        const rootFontSize = 16;
+        const rootFontSize = 15;
         let baseWidth = 1920;
         if (window.innerWidth < 768) baseWidth = 375;
         const ratio = window.innerWidth / baseWidth;
