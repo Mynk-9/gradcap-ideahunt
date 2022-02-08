@@ -28,8 +28,9 @@ const App = () => {
     useEffect(() => {
         const rootFontSize = 15;
         let baseWidth = 1920;
-        if (window.innerWidth < 768) baseWidth = 375;
-        const ratio = window.innerWidth / baseWidth;
+        const windowWidth = document.documentElement.clientWidth;
+        if (windowWidth < 768) baseWidth = 375;
+        const ratio = windowWidth / baseWidth;
         const fontSize = rootFontSize * ratio;
         document.styleSheets[0].insertRule(`:root { font-size: ${fontSize}px}`);
     }, []);
