@@ -8,6 +8,7 @@ import SideNav from './components/sidenav/SideNav';
 import IdeaPanel from './pages/ideapanel/IdeaPanel';
 import Home from './pages/home/Home';
 import PostIdea from './pages/postidea/PostIdea';
+import Profile from './pages/profile/Profile';
 
 import SidenavContext from './contexts/SidenavContext';
 
@@ -76,6 +77,7 @@ const App = () => {
                     <Route path="/home" element={<Home />} />
                     <Route path="/idea-panel" element={<IdeaPanel />} />
                     <Route path="/post-idea" element={<PostIdea />} />
+                    <Route path="/profile" element={<Profile />} />
                 </Routes>
                 <SideNav buttons={[]} mobileVisible={false} pcVisible={true} />
             </BodyContainer>

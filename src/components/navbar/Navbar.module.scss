@@ -53,6 +53,7 @@
     .userProfile {
         img {
             width: 5.25rem; // 84px
+            cursor: pointer;
 
             @media screen and (max-width: 768px) {
                 width: 2.18rem; // 35px

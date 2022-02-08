@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import SidenavContext from '../../contexts/SidenavContext';
 
@@ -11,6 +11,7 @@ import Hamburger from './../../assets/icons/hamburger.svg';
 
 const Navbar = () => {
     const { setActive } = useContext(SidenavContext);
+    const navigate = useNavigate();
 
     return (
         <nav className={Styles.nav}>
@@ -28,7 +29,11 @@ const Navbar = () => {
                 <Link to={'/contact-us'}>{'Contact Us'}</Link>
             </div>
             <div className={`${Styles.item} ${Styles.userProfile}`}>
-                <img src={UserIcon} alt={'User profile'} />
+                <img
+                    src={UserIcon}
+                    alt={'User profile'}
+                    onClick={() => navigate('profile')}
+                />
             </div>
         </nav>
     );
