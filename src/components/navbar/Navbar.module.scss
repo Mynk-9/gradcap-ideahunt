@@ -45,6 +45,8 @@
         justify-content: flex-start;
 
         img {
+            // height: 5rem; // 80px -> should be the val acc to design params
+            height: 3.5rem; // more design lookalike
             @media screen and (max-width: 768px) {
                 height: 2.18rem;
             }
@@ -52,7 +54,7 @@
     }
     .userProfile {
         img {
-            width: 5.25rem; // 84px
+            height: 5rem; // 80px
             cursor: pointer;
 
             @media screen and (max-width: 768px) {
