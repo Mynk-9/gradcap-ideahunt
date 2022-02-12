@@ -12,6 +12,7 @@ import Img1 from './../../assets/images/discovery.svg';
 import Img2 from './../../assets/images/blogging.svg';
 import Img3 from './../../assets/images/idea-2.svg';
 import Img4 from './../../assets/images/special-deals.svg';
+import InputSelect from '../../components/inputselect/InputSelect';
 
 const dummyIdea = {
     profile: UserIcon,
@@ -42,11 +43,11 @@ const IdeaPanel = () => {
             <div className={Styles.pageColumnWrapper}>
                 <div className={Styles.pageColumn}>
                     <div className={Styles.toolsPanel}>
-                        <select name="sort" id="idea-panel-sorting">
-                            <option value={'Featured'}>{'Featured'}</option>
-                            <option value={'Newest'}>{'Newest'}</option>
-                            <option value={'Most Liked'}>{'Most Liked'}</option>
-                        </select>
+                        <InputSelect
+                            options={['Featured', 'Newest', 'Most Liked']}
+                            defaultOption="Featured"
+                            onChange={newVal => console.log(newVal)}
+                        />
                         <button
                             className={Styles.postIdea}
                             onClick={() => navigate('/post-idea')}
