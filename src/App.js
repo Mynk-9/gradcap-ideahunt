@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Footer from './components/footer/Footer';
 import Navbar from './components/navbar/Navbar';
@@ -51,32 +51,43 @@ const App = () => {
                             iconInactive: HomeIconInactive,
                             iconActive: HomeIconActive,
                             path: '/home',
+                            checkPaths: [/\/home/g],
                         },
                         {
                             text: 'Idea Panel',
                             iconInactive: IdeaPanelIconInactive,
                             iconActive: IdeaPanelIconActive,
-                            path: '/idea-panel',
+                            path: '/idea/panel',
+                            checkPaths: [/\/idea\/*/g, /\/post-idea/g],
                         },
                         {
                             text: 'Rewards',
                             iconInactive: RewardsIconInactive,
                             iconActive: RewardsIconActive,
                             path: '/rewards',
+                            checkPaths: [/\/rewards/g],
                         },
                         {
                             text: 'Contact Us',
                             mobileOnly: true,
                             path: 'contact-us',
+                            checkPaths: [/\/contact-us/g],
                         },
                     ]}
                     mobileVisible={true}
                     pcVisible={true}
                 />
                 <Routes>
-                    <Route exact path="/" element={<Home />} />
+                    <Route
+                        path="/"
+                        element={<Navigate replace to={'/home'} />}
+                    />
                     <Route path="/home" element={<Home />} />
-                    <Route path="/idea-panel" element={<IdeaPanel />} />
+                    <Route path="/idea/panel" element={<IdeaPanel />} />
+                    <Route
+                        path="/idea"
+                        element={<Navigate replace to={'/idea/panel'} />}
+                    />
                     <Route path="/post-idea" element={<PostIdea />} />
                     <Route path="/profile" element={<Profile />} />
                 </Routes>

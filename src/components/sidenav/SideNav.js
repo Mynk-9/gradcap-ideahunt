@@ -12,6 +12,12 @@ const SideNavButton = data => {
     let location = useLocation();
     let navigate = useNavigate();
 
+    const correctLocation = data.checkPaths.find(path =>
+        new RegExp(path).test(location.pathname)
+    )
+        ? true
+        : false;
+
     let renderOptions = {};
     if (data.mobileOnly) renderOptions['data-mobile-only'] = 'true';
 
@@ -19,10 +25,10 @@ const SideNavButton = data => {
         <button
             className={Styles.button}
             onClick={() => navigate(data.path)}
-            linkactive={location.pathname === data.path ? 'true' : 'false'}
+            data-link-active={correctLocation ? 'true' : 'false'}
             {...renderOptions}
         >
-            {location.pathname === data.path ? (
+            {correctLocation ? (
                 <img src={data.iconActive} alt={data.text} />
             ) : (
                 <img src={data.iconInactive} alt={data.text} />
@@ -70,6 +76,7 @@ const dataShapePropType = propTypes.shape({
     iconActive: propTypes.string,
     path: propTypes.string.isRequired,
     mobileOnly: propTypes.bool,
+    checkPaths: propTypes.arrayOf(propTypes.instanceOf(RegExp)),
 });
 
 SideNavButton.propTypes = {

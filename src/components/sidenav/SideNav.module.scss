@@ -68,7 +68,7 @@
             }
         }
     }
-    .button[linkActive='true'] {
+    .button[data-link-active='true'] {
         color: var(--side-nav-text-active);
         background-color: #fff;
         box-shadow: 0px 3px 6px #00000029;
