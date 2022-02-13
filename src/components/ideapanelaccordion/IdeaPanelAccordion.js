@@ -8,11 +8,15 @@ import LikeIcon from './../../assets/icons/heart.svg';
 import ShareIcon from './../../assets/icons/share.svg';
 import DetailsIcon from './../../assets/icons/chevron-right.svg';
 
-const IdeaPanelAccordion = ({ idea }) => {
+const IdeaPanelAccordion = ({ idea, featured }) => {
     const [active, setActive] = useState(false);
 
     return (
-        <div className={Styles.accordion} active={active ? 'true' : 'false'}>
+        <div
+            className={Styles.accordion}
+            active={active ? 'true' : 'false'}
+            data-featured={featured ? 'true' : 'false'}
+        >
             <div className={Styles.details}>
                 <div className={Styles.ideaDetails}>{idea.details}</div>
                 <span className={Styles.viewIdea}>View Data</span>
@@ -62,6 +66,7 @@ IdeaPanelAccordion.propTypes = {
         comments: propTypes.number,
         details: propTypes.string,
     }),
+    featured: propTypes.bool,
 };
 
 export default IdeaPanelAccordion;

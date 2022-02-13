@@ -130,3 +130,15 @@
         }
     }
 }
+
+.accordion[data-featured='false'] {
+    .panel {
+        color: #6a6a6a;
+        background: white;
+    }
+    .panelItem {
+        img {
+            filter: none;
+        }
+    }
+}
