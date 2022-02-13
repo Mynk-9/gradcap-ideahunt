@@ -5,10 +5,11 @@ import Footer from './components/footer/Footer';
 import Navbar from './components/navbar/Navbar';
 import BodyContainer from './components/bodycontainer/BodyContainer';
 import SideNav from './components/sidenav/SideNav';
-import IdeaPanel from './pages/ideapanel/IdeaPanel';
 import Home from './pages/home/Home';
 import PostIdea from './pages/postidea/PostIdea';
 import Profile from './pages/profile/Profile';
+import Idea from './pages/idea/Idea';
+import IdeaPanel from './pages/idea/panel/IdeaPanel';
 
 import SidenavContext from './contexts/SidenavContext';
 
@@ -83,11 +84,13 @@ const App = () => {
                         element={<Navigate replace to={'/home'} />}
                     />
                     <Route path="/home" element={<Home />} />
-                    <Route path="/idea/panel" element={<IdeaPanel />} />
-                    <Route
-                        path="/idea"
-                        element={<Navigate replace to={'/idea/panel'} />}
-                    />
+                    <Route path="/idea" element={<Idea />}>
+                        <Route
+                            index
+                            element={<Navigate replace to={'panel'} />}
+                        />
+                        <Route path="panel" element={<IdeaPanel />} />
+                    </Route>
                     <Route path="/post-idea" element={<PostIdea />} />
                     <Route path="/profile" element={<Profile />} />
                 </Routes>
