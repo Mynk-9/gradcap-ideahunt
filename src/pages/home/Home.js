@@ -59,7 +59,7 @@ const Home = () => {
                     <div>
                         <RedButton
                             text={'Go to idea Panel'}
-                            onClick={() => navigate('/idea-panel')}
+                            onClick={() => navigate('/idea/panel')}
                         />
                     </div>
                 </div>
@@ -76,7 +76,7 @@ const Home = () => {
                     </div>
                     <img src={Rewards} />
                 </div>
-                <RedLink text={'Go to Idea Panel'} link={'/idea-panel'} />
+                <RedLink text={'Go to Idea Panel'} link={'/idea/panel'} />
             </div>
         </PrimarySection>
     );

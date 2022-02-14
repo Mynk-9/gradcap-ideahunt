@@ -16,6 +16,13 @@
         padding: 2.125rem;
         font-size: 0.625rem;
         border-radius: 0;
+        background: transparent
+            linear-gradient(91deg, #a3a4e8 -10%, #133643 100%) 0% 0% no-repeat
+            padding-box;
+
+        // for hero art
+
+        overflow: hidden;
     }
 
     & > div {
@@ -36,6 +43,9 @@
 
         @media screen and (max-width: 768px) {
             height: 14rem;
+            margin: 0 -5rem;
+            right: 0;
+            top: 0;
         }
     }
 }
