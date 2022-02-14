@@ -35,7 +35,19 @@ const App = () => {
         if (windowWidth < 768) baseWidth = 375;
         const ratio = windowWidth / baseWidth;
         const fontSize = rootFontSize * ratio;
-        document.styleSheets[0].insertRule(`:root { font-size: ${fontSize}px}`);
+        try {
+            document.styleSheets[0].insertRule(
+                `:root { font-size: ${fontSize}px}`
+            );
+        } catch (e) {
+            setTimeout(
+                () =>
+                    document.styleSheets[0].insertRule(
+                        `:root { font-size: ${fontSize}px}`
+                    ),
+                2000
+            );
+        }
     }, []);
 
     return (
