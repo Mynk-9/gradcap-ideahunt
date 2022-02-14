@@ -17,7 +17,8 @@ import EditIcon from './../../assets/icons/edit.svg';
 import SpecialDealsImage from './../../assets/images/special-deals.svg';
 
 const dummyIdea = {
-    profile: ProfileIcon,
+    ideaId: 'abc',
+    profile: { name: 'Mayank', photo: ProfileIcon },
     heading: 'Consumable plastic for saving the environment',
     likes: 50,
     comments: 5,
