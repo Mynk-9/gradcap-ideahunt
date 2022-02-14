@@ -12,6 +12,7 @@ import Hamburger from './../../assets/icons/hamburger.svg';
 const Navbar = () => {
     const { setActive } = useContext(SidenavContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
     return (
         <nav className={Styles.nav}>
@@ -26,7 +27,16 @@ const Navbar = () => {
                 <img src={IdeaHuntLogo} alt={'Idea Hunt Logo'} />
             </div>
             <div className={Styles.item} data-pc-only>
-                <Link to={'/contact-us'}>{'Contact Us'}</Link>
+                <span
+                    style={{
+                        color:
+                            location.pathname === '/contact-us'
+                                ? '#C86374'
+                                : 'inherit',
+                    }}
+                >
+                    <Link to={'/contact-us'}>{'Contact Us'}</Link>
+                </span>
             </div>
             <div className={`${Styles.item} ${Styles.userProfile}`}>
                 <img
