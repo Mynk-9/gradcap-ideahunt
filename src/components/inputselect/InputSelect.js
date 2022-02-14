@@ -17,12 +17,12 @@ const InputSelect = ({ options, defaultOption, onChange }) => {
 
     return (
         <div className={Styles.selectionWrapper} data-open={open}>
-            <div className={Styles.selected}>
+            <div
+                className={Styles.selected}
+                onClick={() => setOpen(state => !state)}
+            >
                 <span>{selected}</span>
-                <img
-                    src={DownArrowIcon}
-                    onClick={() => setOpen(state => !state)}
-                />
+                <img src={DownArrowIcon} />
             </div>
             <div className={Styles.options}>
                 {options
