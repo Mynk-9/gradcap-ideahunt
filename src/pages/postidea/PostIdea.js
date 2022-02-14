@@ -70,7 +70,7 @@ const PostIdea = () => {
             </form>
             <RedLink
                 text={'Go to Idea Panel'}
-                link={'/idea-panel'}
+                link={'/idea/panel'}
                 styles={{ paddingBottom: '4rem' }}
             />
         </PrimarySection>
