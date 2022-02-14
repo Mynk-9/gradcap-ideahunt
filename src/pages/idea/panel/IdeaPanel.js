@@ -9,7 +9,8 @@ import UserIcon from './../../../assets/icons/user-profile.svg';
 import InputSelect from './../../../components/inputselect/InputSelect';
 
 const dummyIdea = {
-    profile: UserIcon,
+    ideaId: 'abc',
+    profile: { name: 'Mayank', photo: UserIcon },
     heading: 'Consumable plastic for saving the environment',
     likes: 50,
     comments: 5,
@@ -52,6 +53,7 @@ const IdeaPanel = () => {
                     <IdeaPanelAccordion
                         idea={idea}
                         key={`${idea.heading}-${i}`}
+                        featured={i < 3}
                     />
                 ))}
             </div>
