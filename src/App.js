@@ -10,6 +10,7 @@ import PostIdea from './pages/postidea/PostIdea';
 import Profile from './pages/profile/Profile';
 import Idea from './pages/idea/Idea';
 import IdeaPanel from './pages/idea/panel/IdeaPanel';
+import IdeaDetails from './pages/idea/details/IdeaDetails';
 
 import SidenavContext from './contexts/SidenavContext';
 
@@ -90,6 +91,7 @@ const App = () => {
                             element={<Navigate replace to={'panel'} />}
                         />
                         <Route path="panel" element={<IdeaPanel />} />
+                        <Route path=":ideaId" element={<IdeaDetails />} />
                     </Route>
                     <Route path="/post-idea" element={<PostIdea />} />
                     <Route path="/profile" element={<Profile />} />

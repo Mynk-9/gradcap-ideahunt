@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
 
 import Styles from './IdeaPanelAccordion.module.scss';
@@ -19,14 +20,16 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
         >
             <div className={Styles.details}>
                 <div className={Styles.ideaDetails}>{idea.details}</div>
-                <span className={Styles.viewIdea}>View Data</span>
+                <span className={Styles.viewIdea}>
+                    <Link to={`/idea/${idea.ideaId}`}>{'View Idea'}</Link>
+                </span>
             </div>
             <div className={Styles.panel}>
                 <div className={Styles.panelSection}>
                     <div
                         className={`${Styles.panelItem} ${Styles.profileItem}`}
                     >
-                        <img src={idea.profile} alt="Profile image" />
+                        <img src={idea.profile.photo} alt="Profile image" />
                     </div>
                     <div className={Styles.panelItem}>
                         <span className={Styles.brief}>{idea.heading}</span>
@@ -60,11 +63,15 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
 
 IdeaPanelAccordion.propTypes = {
     idea: propTypes.shape({
-        profile: propTypes.string.isRequired,
+        profile: propTypes.shape({
+            name: propTypes.string,
+            photo: propTypes.string,
+        }).isRequired,
         heading: propTypes.string.isRequired,
         likes: propTypes.number,
         comments: propTypes.number,
         details: propTypes.string,
+        ideaId: propTypes.string.isRequired,
     }),
     featured: propTypes.bool,
 };

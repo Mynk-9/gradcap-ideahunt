@@ -115,6 +115,11 @@
         }
         .viewIdea {
             font-family: 'tex-bold';
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
         }
     }
 }
@@ -138,7 +143,7 @@
     }
     .panelItem {
         img {
-            filter: none;
+            filter: invert(0.5);
         }
     }
 }
