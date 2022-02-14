@@ -23,6 +23,7 @@ import IdeaPanelIconInactive from './assets/icons/message-square-inactive.svg';
 import IdeaPanelIconActive from './assets/icons/message-square-active.svg';
 import RewardsIconInactive from './assets/icons/award-inactive.svg';
 import RewardsIconActive from './assets/icons/award-active.svg';
+import ContactUs from './pages/contactus/ContactUs';
 
 const App = () => {
     const [sidenavActive, setSidenavActive] = useState(false);
@@ -95,6 +96,7 @@ const App = () => {
                     </Route>
                     <Route path="/post-idea" element={<PostIdea />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/contact-us" element={<ContactUs />} />
                 </Routes>
                 <SideNav buttons={[]} mobileVisible={false} pcVisible={true} />
             </BodyContainer>

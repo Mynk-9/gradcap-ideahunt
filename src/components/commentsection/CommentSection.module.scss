@@ -1,0 +1,101 @@
+.commentSection {
+    padding: 2rem 1rem;
+
+    @media screen and (max-width: 768px) {
+        padding: 0.5rem 0rem;
+    }
+
+    .commentWrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 1.25rem 0;
+
+        @media screen and (max-width: 768px) {
+            margin: 0.5rem 0;
+        }
+
+        .comment {
+            display: flex;
+            flex-direction: row;
+
+            font-size: 1.25rem;
+
+            @media screen and (max-width: 768px) {
+                font-size: 0.5rem;
+            }
+
+            .profile {
+                img {
+                    width: 3.125rem;
+                    margin: 0 0.875rem;
+
+                    @media screen and (max-width: 768px) {
+                        width: 1.125rem;
+                        margin: 0 0.5rem;
+                        margin-left: 0;
+                    }
+                }
+            }
+
+            .body {
+                display: flex;
+                flex-direction: column;
+
+                .main {
+                    margin-bottom: 0.5rem;
+
+                    .person {
+                        font-family: 'tex-bold';
+                    }
+                    .person::after {
+                        content: '  ';
+                    }
+                }
+                .stats {
+                    display: flex;
+                    flex-direction: row;
+
+                    & > * {
+                        margin-right: 0.75rem;
+                    }
+                    button {
+                        font-family: 'tex-bold';
+                        color: var(--text-color);
+                        background-color: transparent;
+                        outline: none;
+                        margin: 0;
+                        padding: 0;
+                        border: none;
+                    }
+                }
+            }
+
+            .interactions {
+                flex: 1;
+
+                img {
+                    float: right;
+                    width: 1.5rem;
+                    filter: invert(0.5);
+
+                    @media screen and (max-width: 768px) {
+                        width: 0.5rem;
+                    }
+                }
+            }
+        }
+
+        .replies {
+            margin-left: 4rem;
+
+            @media screen and (max-width: 768px) {
+                margin-left: 0.5rem;
+            }
+
+            .replies {
+                margin-left: 0;
+            }
+        }
+    }
+}
