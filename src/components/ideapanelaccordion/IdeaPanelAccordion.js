@@ -1,16 +1,65 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
+import axios from 'axios';
 
 import Styles from './IdeaPanelAccordion.module.scss';
 
 import CommentIcon from './../../assets/icons/message-square.svg';
 import LikeIcon from './../../assets/icons/heart.svg';
+import LikedIcon from './../../assets/icons/heart-filled.svg';
 import ShareIcon from './../../assets/icons/share.svg';
 import DetailsIcon from './../../assets/icons/chevron-right.svg';
 
 const IdeaPanelAccordion = ({ idea, featured }) => {
     const [active, setActive] = useState(false);
+    const [liked, setLiked] = useState(false);
+    const [likeCount, setLikeCount] = useState(idea.likes);
+    const commentCount = parseInt(idea.comments);
+    const token = localStorage.getItem('g-token');
+
+    useEffect(() => {
+        if (!token) return;
+
+        axios
+            .get(`http://localhost:8050/ideas/${idea.ideaId}/like`, {
+                headers: {
+                    authorization: token,
+                },
+            })
+            .then(resp => {
+                setLiked(resp.data?.liked ? true : false);
+            })
+            .catch(err => console.log(err));
+    }, []);
+
+    const likeIdea = () => {
+        if (!token) return;
+
+        axios
+            .post(
+                `http://localhost:8050/ideas/${idea.ideaId}/like`,
+                {
+                    like: !liked,
+                },
+                {
+                    headers: {
+                        authorization: token,
+                    },
+                }
+            )
+            .then(resp => {
+                if (resp.status !== 201) console.log('Error in liking idea');
+                else {
+                    if (resp.data.likeStatus) setLikeCount(val => val + 1);
+                    else setLikeCount(val => val - 1);
+                    setLiked(val => !val);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
 
     return (
         <div
@@ -37,12 +86,16 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
                 </div>
                 <div className={Styles.panelSection}>
                     <div className={Styles.panelItem}>
-                        <img src={LikeIcon} alt="Like" />
-                        <span className={Styles.stats}>{'56'}</span>
+                        <img
+                            src={liked ? LikedIcon : LikeIcon}
+                            alt="Like"
+                            onClick={likeIdea}
+                        />
+                        <span className={Styles.stats}>{likeCount}</span>
                     </div>
                     <div className={Styles.panelItem}>
                         <img src={CommentIcon} alt="Comment" />
-                        <span className={Styles.stats}>{'4'}</span>
+                        <span className={Styles.stats}>{commentCount}</span>
                     </div>
                     <div className={Styles.panelItem}>
                         <img src={ShareIcon} alt="Share" />
