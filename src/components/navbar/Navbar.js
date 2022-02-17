@@ -1,7 +1,8 @@
-import { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import SidenavContext from '../../contexts/SidenavContext';
+import LoginContext from '../../contexts/LoginContext';
 
 import Styles from './Navbar.module.scss';
 
@@ -11,8 +12,15 @@ import Hamburger from './../../assets/icons/hamburger.svg';
 
 const Navbar = () => {
     const { setActive } = useContext(SidenavContext);
+    const { loginData } = useContext(LoginContext);
+    const [profileImg, setProfileImg] = useState(UserIcon);
     const navigate = useNavigate();
     const location = useLocation();
+
+    useEffect(() => {
+        if (loginData && loginData.profileURL)
+            setProfileImg(loginData.profileURL);
+    }, [loginData]);
 
     return (
         <nav className={Styles.nav}>
@@ -38,10 +46,17 @@ const Navbar = () => {
                     <Link to={'/contact-us'}>{'Contact Us'}</Link>
                 </span>
             </div>
+            <div
+                className={Styles.item}
+                style={{ display: loginData ? 'none' : '' }}
+                data-pc-only
+            >
+                <Link to={'/login'}>{'Login'}</Link>
+            </div>
             <div className={`${Styles.item} ${Styles.userProfile}`}>
                 <img
-                    src={UserIcon}
-                    alt={'User profile'}
+                    src={profileImg}
+                    alt={''}
                     onClick={() => navigate('profile')}
                 />
             </div>
