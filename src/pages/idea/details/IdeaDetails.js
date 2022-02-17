@@ -1,4 +1,5 @@
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import IdeaPanelAccordion from '../../../components/ideapanelaccordion/IdeaPanelAccordion';
 import Heading from './../../../components/heading/Heading';
@@ -9,8 +10,11 @@ import Styles from '../Idea.module.scss';
 
 import UserIcon from './../../../assets/icons/user-profile.svg';
 import LikeIcon from './../../../assets/icons/heart.svg';
+import LikedIcon from './../../../assets/icons/heart-filled.svg';
 import CommentIcon from './../../../assets/icons/message-square.svg';
 import ShareIcon from './../../../assets/icons/share.svg';
+import axios from 'axios';
+import PostCommentDialog from '../../../components/postcommentdialog/PostCommentDialog';
 
 const dummyIdea = {
     ideaId: 'abc',
@@ -71,8 +75,120 @@ const dummyIdea = {
 
 const dummyIdeas = [dummyIdea, dummyIdea, dummyIdea];
 
+const getIdeaId = path => {
+    path = path.split('/');
+    let id = path.pop();
+    while (id === '/') id = path.pop();
+    return id;
+};
+
 const IdeaDetails = () => {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [idea, setIdea] = useState(null);
+    const [comments, setComments] = useState(null);
+    const [liked, setLiked] = useState(false);
+    const [likeCount, setLikeCount] = useState(0);
+    const [commentDialog, openCommentDialog] = useState(false);
+
+    const token = localStorage.getItem('g-token');
+    let ideaId = getIdeaId(location.pathname);
+
+    const fetchComments = () => {
+        axios
+            .get('http://localhost:8050/ideas/comments/', {
+                params: { ideaId: ideaId },
+            })
+            .then(resp => {
+                if (resp.status === 200) {
+                    setComments(resp.data);
+                } else console.log('Error at fetching idea comments.');
+            })
+            .catch(err => {
+                console.log('Error at fetching idea comments.', err);
+            });
+    };
+
+    const fetchIdea = () => {
+        axios
+            .get(`http://localhost:8050/ideas/${ideaId}`)
+            .then(resp => {
+                if (resp.status === 200) {
+                    setIdea(resp.data);
+                    setLikeCount(resp.data.likes);
+                } else console.log('Error at fetching idea.');
+            })
+            .catch(err => {
+                console.log('Error at fetching idea.', err);
+            });
+    };
+
+    const fetchLiked = () => {
+        axios
+            .get(`http://localhost:8050/ideas/${ideaId}/like`, {
+                headers: {
+                    authorization: token,
+                },
+            })
+            .then(resp => {
+                setLiked(resp.data?.liked ? true : false);
+            })
+            .catch(err => console.log(err));
+    };
+
+    useEffect(() => {
+        ideaId = getIdeaId(location.pathname);
+
+        fetchIdea();
+        fetchComments();
+        if (token) fetchLiked();
+    }, [location]);
+
+    const likeIdea = () => {
+        axios
+            .post(
+                `http://localhost:8050/ideas/${ideaId}/like`,
+                {
+                    like: !liked,
+                },
+                {
+                    headers: {
+                        authorization: token,
+                    },
+                }
+            )
+            .then(resp => {
+                if (resp.status !== 201) console.log('Error in liking idea');
+                else {
+                    if (resp.data.likeStatus) setLikeCount(val => val + 1);
+                    else setLikeCount(val => val - 1);
+                    setLiked(val => !val);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
+
+    const handleComment = reply => {
+        axios
+            .post(
+                `http://localhost:8050/ideas/comments/`,
+                { data: reply },
+                {
+                    headers: { authorization: token },
+                    params: { ideaId: ideaId },
+                }
+            )
+            .then(resp => {
+                if (resp.status === 201) {
+                    fetchComments();
+                } else console.log('Error at fetching idea child comments.');
+            })
+            .catch(err => {
+                console.log('Error at fetching idea child comments.', err);
+            });
+    };
 
     return (
         <div className={Styles.pageColumn}>
@@ -87,37 +203,47 @@ const IdeaDetails = () => {
             </div>
             <div className={Styles.ideaDetails}>
                 <div className={Styles.user}>
-                    <img src={dummyIdea.profile.photo} />
-                    <span className={Styles.header}>
-                        {dummyIdea.profile.name}
-                    </span>
+                    <img src={idea?.profile?.photo} />
+                    <span className={Styles.header}>{idea?.profile?.name}</span>
                 </div>
                 <div className={Styles.idea}>
-                    <div className={Styles.header}>{dummyIdea.heading}</div>
-                    <div className={Styles.details}>{dummyIdea.details}</div>
+                    <div className={Styles.header}>{idea?.heading}</div>
+                    <div className={Styles.details}>{idea?.details}</div>
                 </div>
                 <div className={Styles.stats}>
                     {`Liked by `}
-                    <span
-                        className={Styles.stat}
-                    >{`${dummyIdea.likes} users`}</span>
+                    <span className={Styles.stat}>{`${likeCount} users`}</span>
                 </div>
                 <div className={Styles.interactions}>
-                    <img src={LikeIcon} />
-                    <img src={CommentIcon} />
+                    <img
+                        src={liked ? LikedIcon : LikeIcon}
+                        onClick={likeIdea}
+                    />
+                    <img
+                        src={CommentIcon}
+                        onClick={() => openCommentDialog(true)}
+                    />
+                    <PostCommentDialog
+                        handleClose={() => {
+                            openCommentDialog(false);
+                        }}
+                        open={commentDialog}
+                        handleComment={handleComment}
+                    />
                     <img src={ShareIcon} />
                 </div>
-                <CommentSection
-                    comments={dummyIdea.postedComments}
-                    ideaId={dummyIdea.ideaId}
-                />
+                {idea && comments ? (
+                    <CommentSection comments={comments} ideaId={idea.ideaId} />
+                ) : (
+                    <></>
+                )}
             </div>
             <Heading>{'Explore more Ideas'}</Heading>
             <div className={Styles.ideaListWrapper}>
-                {dummyIdeas.map((idea, i) => (
+                {dummyIdeas.map((_idea, i) => (
                     <IdeaPanelAccordion
-                        idea={idea}
-                        key={`${idea.heading}-${i}`}
+                        idea={_idea}
+                        key={`${_idea.heading}-${i}`}
                     />
                 ))}
             </div>
