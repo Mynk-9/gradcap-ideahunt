@@ -1,8 +1,13 @@
+import { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
+import axios from 'axios';
+
+import PostCommentDialog from './../../components/postcommentdialog/PostCommentDialog';
 
 import Styles from './CommentSection.module.scss';
 
 import LikeIcon from './../../assets/icons/heart.svg';
+import LikedIcon from './../../assets/icons/heart-filled.svg';
 
 const timeDifference = (today, otherDay) => {
     let difference = today - otherDay;
@@ -24,18 +29,104 @@ const timeDifference = (today, otherDay) => {
 };
 
 const Comment = ({ comment, ideaId }) => {
+    if (typeof comment !== 'object') return <></>;
+
+    const [children, setChildren] = useState(null);
+    const [liked, setLiked] = useState(false);
+    const [likeCount, setLikeCount] = useState(comment.likes);
+    const [replyDialog, openReplyDialog] = useState(false);
+
+    const token = localStorage.getItem('g-token');
+
+    useEffect(() => {
+        if (!token) return;
+
+        axios
+            .get(
+                `http://localhost:8050/ideas/comments/${comment.commentId}/like`,
+                {
+                    headers: {
+                        authorization: token,
+                    },
+                }
+            )
+            .then(resp => {
+                setLiked(resp.data?.liked ? true : false);
+            })
+            .catch(err => console.log(err));
+    }, []);
+
+    const likeComment = commentId => {
+        axios
+            .post(
+                `http://localhost:8050/ideas/comments/${commentId}/like`,
+                {
+                    like: !liked,
+                },
+                {
+                    headers: {
+                        authorization: token,
+                    },
+                }
+            )
+            .then(resp => {
+                if (resp.status !== 201) console.log('Error in liking comment');
+                else {
+                    if (resp.data.likeStatus) setLikeCount(val => val + 1);
+                    else setLikeCount(val => val - 1);
+                    setLiked(val => !val);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
+
+    const fetchChildCommentData = commentId => {
+        axios
+            .get(`http://localhost:8050/ideas/comments/${commentId}/children`)
+            .then(resp => {
+                if (resp.status === 200) {
+                    setChildren(resp.data);
+                } else console.log('Error at fetching idea child comments.');
+            })
+            .catch(err => {
+                console.log('Error at fetching idea child comments.', err);
+            });
+    };
+
+    const handleReply = reply => {
+        axios
+            .post(
+                `http://localhost:8050/ideas/comments/`,
+                { data: reply, parentComment: comment.commentId },
+                {
+                    headers: { authorization: token },
+                    params: { ideaId: ideaId },
+                }
+            )
+            .then(resp => {
+                if (resp.status === 201) {
+                    fetchChildCommentData(comment.commentId);
+                } else console.log('Error at fetching idea child comments.');
+            })
+            .catch(err => {
+                console.log('Error at fetching idea child comments.', err);
+            });
+    };
+
     return (
         <div className={Styles.commentWrapper}>
             <div className={Styles.comment}>
                 <div className={Styles.profile}>
-                    <img src={comment.poster.photo} />
+                    <img src={comment.user.profileURL} />
                 </div>
                 <div className={Styles.body}>
                     <div className={Styles.main}>
                         <span className={Styles.person}>
-                            {comment.poster.name}
+                            {comment.user.name}
                         </span>
-                        <span className={Styles.text}>{comment.comment}</span>
+                        <span className={Styles.text}>{comment.data}</span>
                     </div>
                     <div className={Styles.stats}>
                         <span>
@@ -44,20 +135,50 @@ const Comment = ({ comment, ideaId }) => {
                                 comment.postTime
                             )}
                         </span>
-                        <span>{`${comment.likes} likes`}</span>
-                        <button>{`Reply`}</button>
+                        <span>{`${likeCount} likes`}</span>
+                        <button
+                            onClick={() => {
+                                if (token) openReplyDialog(true);
+                                else alert('Login to post reply.');
+                            }}
+                        >{`Reply`}</button>
+                        <PostCommentDialog
+                            open={replyDialog}
+                            handleClose={() => openReplyDialog(false)}
+                            handleComment={handleReply}
+                        />
+                        {comment.childComments.length > 0 ? (
+                            !children ? (
+                                <button
+                                    onClick={() =>
+                                        fetchChildCommentData(comment.commentId)
+                                    }
+                                >
+                                    {'Show replies'}
+                                </button>
+                            ) : (
+                                <button onClick={() => setChildren(null)}>
+                                    {'Hide replies'}
+                                </button>
+                            )
+                        ) : (
+                            <></>
+                        )}
                     </div>
                 </div>
                 <div className={Styles.interactions}>
-                    <img src={LikeIcon} />
+                    <img
+                        onClick={() => likeComment(comment.commentId)}
+                        src={liked ? LikedIcon : LikeIcon}
+                    />
                 </div>
             </div>
-            {comment.comments.length > 0 ? (
+            {children ? (
                 <div className={Styles.replies}>
-                    {comment.comments.map((comment, i) => (
+                    {children.map(childComment => (
                         <Comment
-                            key={`${i}-${ideaId}`}
-                            comment={comment}
+                            key={childComment.commentId}
+                            comment={childComment}
                             ideaId={ideaId}
                         />
                     ))}
@@ -72,9 +193,9 @@ const Comment = ({ comment, ideaId }) => {
 const CommentSection = ({ comments, ideaId }) => {
     return (
         <div className={Styles.commentSection}>
-            {comments.map((comment, i) => (
+            {comments.map(comment => (
                 <Comment
-                    key={`${i}-${ideaId}`}
+                    key={comment.commentId}
                     comment={comment}
                     ideaId={ideaId}
                 />
@@ -84,15 +205,16 @@ const CommentSection = ({ comments, ideaId }) => {
 };
 
 const commentProp = propTypes.shape({
-    poster: propTypes.shape({
+    commentId: propTypes.string.isRequired,
+    user: propTypes.shape({
         name: propTypes.string.isRequired,
-        photo: propTypes.string,
+        profileURL: propTypes.string,
     }),
-    comment: propTypes.string.isRequired,
+    data: propTypes.string.isRequired,
     likes: propTypes.number.isRequired,
-    liked: propTypes.bool.isRequired,
-    postTime: propTypes.number.isRequired,
-    comments: propTypes.any,
+    postTime: propTypes.string.isRequired,
+    parentComment: propTypes.string,
+    childComments: propTypes.any,
 });
 
 Comment.propTypes = {
