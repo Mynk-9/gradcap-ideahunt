@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import Footer from './components/footer/Footer';
 import Navbar from './components/navbar/Navbar';
@@ -32,6 +33,36 @@ const App = () => {
     const [loginData, setLoginData] = useState(null);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const token = localStorage.getItem('g-token');
+        if (!token) return;
+        if (token && loginData) return;
+
+        console.log('Doing token verification.');
+
+        axios
+            .post(
+                'http://localhost:8050/login/google/verify',
+                {},
+                {
+                    headers: {
+                        authorization: token,
+                    },
+                }
+            )
+            .then(resp => {
+                setLoginData({
+                    token: token,
+                    ...resp.data,
+                });
+                console.log('Token verified');
+            })
+            .catch(() => {
+                localStorage.removeItem('g-token');
+                console.log('Token expired, require re-login');
+                navigate('/home', { replace: true });
+            });
+    }, []);
 
     useEffect(() => {
         const rootFontSize = 15;
