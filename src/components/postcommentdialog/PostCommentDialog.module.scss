@@ -1,0 +1,109 @@
+.dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background: rgba($color: #f9f9f9, $alpha: 0.84) 0% 0% no-repeat padding-box;
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+
+        padding: 4.25rem 3.25rem;
+        background: rgba($color: #ffffff, $alpha: 0.91) 0% 0% no-repeat
+            padding-box;
+        border-radius: 3rem;
+
+        transform: translate(-50%, -50%);
+
+        @media screen and (max-width: 768px) {
+            padding: 2rem;
+            border-radius: 1rem;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 3.75rem;
+
+            @media screen and (max-width: 768px) {
+                margin-bottom: 1rem;
+            }
+
+            &:first-child {
+                margin-top: -3rem;
+                margin-right: -2rem;
+                justify-content: flex-end;
+
+                @media screen and (max-width: 768px) {
+                    margin-top: -1rem;
+                    margin-right: -1rem;
+                }
+
+                img {
+                    cursor: pointer;
+                    width: 2rem;
+                    filter: invert(0.5);
+
+                    @media screen and (max-width: 768px) {
+                        width: 1rem;
+                    }
+                }
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            img {
+                height: 3.5rem;
+                margin-right: 1rem;
+
+                @media screen and (max-width: 768px) {
+                    height: 1.5rem;
+                    margin-right: 0.5rem;
+                }
+            }
+
+            input {
+                min-width: 35rem;
+
+                font-size: 1.25rem;
+                color: #77829f;
+                background: #ffffff 0% 0% no-repeat padding-box;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                margin-right: 1rem;
+
+                border-radius: 15px;
+                border: 0;
+                box-shadow: inset 0px 3px 6px #00000029;
+
+                @media screen and (max-width: 768px) {
+                    min-width: 5rem;
+                    font-size: 0.75rem;
+                }
+            }
+
+            button {
+                font-size: 1.25rem;
+                color: #77829f;
+                background-color: transparent;
+                text-align: center;
+
+                border: 0;
+                outline: 0;
+                cursor: pointer;
+
+                @media screen and (max-width: 768px) {
+                    font-size: 0.75rem;
+                }
+            }
+        }
+    }
+}
