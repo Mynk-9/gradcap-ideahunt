@@ -1,15 +1,28 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import PrimarySection from './../../components/primarysection/PrimarySection';
 import Heading from './../../components/heading/Heading';
 import RedButton from './../../components/redbutton/RedButton';
 import RedLink from './../../components/redlink/RedLink';
 
+import LoginContext from './../../contexts/LoginContext';
+
 import Styles from './PostIdea.module.scss';
 
 import PenIcon from './../../assets/icons/pen.svg';
 
 const PostIdea = () => {
+    const navigate = useNavigate();
+    const { loginData } = useContext(LoginContext);
+    const loggedIn = localStorage.getItem('g-token') ? true : false;
+
+    // redirect back if not logged in
+    useEffect(() => {
+        if (!loggedIn) navigate('/login', { replace: true });
+    });
+
     const [ideaName, setIdeaName] = useState('');
     const [nameValid, setNameValid] = useState('true');
     const [ideaDesc, setIdeaDesc] = useState('');
@@ -32,10 +45,46 @@ const PostIdea = () => {
         else setDescValid('true');
     };
 
+    const handleSubmit = () => {
+        const token = localStorage.getItem('g-token');
+        axios
+            .post(
+                'http://localhost:8050/ideas',
+                {
+                    heading: ideaName,
+                    details: ideaDesc,
+                    userId: loginData.userId,
+                },
+                {
+                    headers: {
+                        authorization: token,
+                    },
+                }
+            )
+            .then(resp => {
+                if (resp.status !== 201)
+                    throw new Error(
+                        `Error at post creation. ${resp.data.error}`
+                    );
+                alert('Post created.');
+                setIdeaDesc('');
+                setIdeaName('');
+            })
+            .catch(err => {
+                alert('Error');
+                console.log(err);
+                if (err.response.status === 403) {
+                    localStorage.removeItem('g-token');
+                    alert('Session expired, please login again.');
+                    navigate('/login');
+                }
+            });
+    };
+
     return (
         <PrimarySection>
             <Heading>{'Post your idea'}</Heading>
-            <form className={Styles.form}>
+            <div className={Styles.form}>
                 <div className={Styles.ideaNameWrapper} data-valid={nameValid}>
                     <input
                         type={'text'}
@@ -63,11 +112,15 @@ const PostIdea = () => {
                 <div style={{ textAlign: 'center' }}>
                     <RedButton
                         text={'Post'}
-                        onClick={() => ({})}
+                        onClick={() => {
+                            if (nameValid === 'true' && descValid === 'true')
+                                handleSubmit();
+                            alert('Please enter valid data.');
+                        }}
                         classNames={[Styles.postButton]}
                     />
                 </div>
-            </form>
+            </div>
             <RedLink
                 text={'Go to Idea Panel'}
                 link={'/idea/panel'}
