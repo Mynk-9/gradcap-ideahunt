@@ -12,6 +12,7 @@ import Rewards from './../../assets/images/special-deals.svg';
 import IdeaHuntLogo from './../../assets/icons/idea-hunt.png';
 import HeroArt from './../../assets/images/growth-2.svg';
 import UserFlow from './../../assets/images/user-flow.png';
+import RewardsCards from '../../components/rewardscards/RewardsCards';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -76,6 +77,7 @@ const Home = () => {
                     </div>
                     <img src={Rewards} />
                 </div>
+                <RewardsCards />
                 <RedLink text={'Go to Idea Panel'} link={'/idea/panel'} />
             </div>
         </PrimarySection>

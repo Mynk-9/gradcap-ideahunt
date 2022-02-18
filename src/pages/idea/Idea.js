@@ -9,6 +9,7 @@ import Img1 from './../../assets/images/discovery.svg';
 import Img2 from './../../assets/images/blogging.svg';
 import Img3 from './../../assets/images/idea-2.svg';
 import Img4 from './../../assets/images/special-deals.svg';
+import RewardsCards from '../../components/rewardscards/RewardsCards';
 
 const IdeaPanel = () => {
     return (
@@ -33,6 +34,7 @@ const IdeaPanel = () => {
                 </div>
                 <img src={Img4} />
             </div>
+            <RewardsCards />
         </PrimarySection>
     );
 };
