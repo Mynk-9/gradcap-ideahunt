@@ -1,0 +1,73 @@
+.rewardsSection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    position: relative;
+    width: 22rem;
+    height: 22rem;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border-radius: 1.25rem;
+    margin: 1rem;
+
+    @media screen and (max-width: 768px) {
+        width: 6.25rem;
+        height: 6.25rem;
+    }
+
+    & > * {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+
+    .text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 4rem;
+
+        color: var(--heading-color);
+        font-size: 1.875rem;
+        text-align: center;
+
+        transform: rotateY(180deg);
+        opacity: 0;
+        transition: transform var(--std-transition-time) ease,
+            opacity var(--std-transition-time) ease;
+
+        box-shadow: 0px 6px 9px #00000029;
+
+        @media screen and (max-width: 768px) {
+            font-size: 0.625rem;
+            padding: 0 0.3rem;
+        }
+    }
+    .image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        box-shadow: 0px 6px 9px #00000029;
+
+        transition: transform var(--std-transition-time) ease,
+            opacity var(--std-transition-time) ease;
+
+        img {
+            width: 50%;
+        }
+    }
+}
+.card:hover {
+    .text {
+        transform: none;
+        opacity: 1;
+    }
+    .image {
+        transform: rotateY(180deg);
+        opacity: 0;
+    }
+}
