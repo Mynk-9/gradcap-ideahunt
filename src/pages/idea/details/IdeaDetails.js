@@ -96,7 +96,7 @@ const IdeaDetails = () => {
 
     const fetchComments = () => {
         axios
-            .get('http://localhost:8050/ideas/comments/', {
+            .get(`${process.env.REACT_APP_SERVER}ideas/comments/`, {
                 params: { ideaId: ideaId },
             })
             .then(resp => {
@@ -111,7 +111,7 @@ const IdeaDetails = () => {
 
     const fetchIdea = () => {
         axios
-            .get(`http://localhost:8050/ideas/${ideaId}`)
+            .get(`${process.env.REACT_APP_SERVER}ideas/${ideaId}`)
             .then(resp => {
                 if (resp.status === 200) {
                     setIdea(resp.data);
@@ -125,7 +125,7 @@ const IdeaDetails = () => {
 
     const fetchLiked = () => {
         axios
-            .get(`http://localhost:8050/ideas/${ideaId}/like`, {
+            .get(`${process.env.REACT_APP_SERVER}ideas/${ideaId}/like`, {
                 headers: {
                     authorization: token,
                 },
@@ -147,7 +147,7 @@ const IdeaDetails = () => {
     const likeIdea = () => {
         axios
             .post(
-                `http://localhost:8050/ideas/${ideaId}/like`,
+                `${process.env.REACT_APP_SERVER}ideas/${ideaId}/like`,
                 {
                     like: !liked,
                 },
@@ -173,7 +173,7 @@ const IdeaDetails = () => {
     const handleComment = reply => {
         axios
             .post(
-                `http://localhost:8050/ideas/comments/`,
+                `${process.env.REACT_APP_SERVER}ideas/comments/`,
                 { data: reply },
                 {
                     headers: { authorization: token },

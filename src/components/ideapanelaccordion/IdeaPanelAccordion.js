@@ -22,7 +22,7 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
         if (!token) return;
 
         axios
-            .get(`http://localhost:8050/ideas/${idea.ideaId}/like`, {
+            .get(`${process.env.REACT_APP_SERVER}ideas/${idea.ideaId}/like`, {
                 headers: {
                     authorization: token,
                 },
@@ -38,7 +38,7 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
 
         axios
             .post(
-                `http://localhost:8050/ideas/${idea.ideaId}/like`,
+                `${process.env.REACT_APP_SERVER}ideas/${idea.ideaId}/like`,
                 {
                     like: !liked,
                 },

@@ -49,7 +49,7 @@ const PostIdea = () => {
         const token = localStorage.getItem('g-token');
         axios
             .post(
-                'http://localhost:8050/ideas',
+                `${process.env.REACT_APP_SERVER}ideas`,
                 {
                     heading: ideaName,
                     details: ideaDesc,

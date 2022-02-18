@@ -43,7 +43,7 @@ const Comment = ({ comment, ideaId }) => {
 
         axios
             .get(
-                `http://localhost:8050/ideas/comments/${comment.commentId}/like`,
+                `${process.env.REACT_APP_SERVER}ideas/comments/${comment.commentId}/like`,
                 {
                     headers: {
                         authorization: token,
@@ -59,7 +59,7 @@ const Comment = ({ comment, ideaId }) => {
     const likeComment = commentId => {
         axios
             .post(
-                `http://localhost:8050/ideas/comments/${commentId}/like`,
+                `${process.env.REACT_APP_SERVER}ideas/comments/${commentId}/like`,
                 {
                     like: !liked,
                 },
@@ -84,7 +84,9 @@ const Comment = ({ comment, ideaId }) => {
 
     const fetchChildCommentData = commentId => {
         axios
-            .get(`http://localhost:8050/ideas/comments/${commentId}/children`)
+            .get(
+                `${process.env.REACT_APP_SERVER}ideas/comments/${commentId}/children`
+            )
             .then(resp => {
                 if (resp.status === 200) {
                     setChildren(resp.data);
@@ -98,7 +100,7 @@ const Comment = ({ comment, ideaId }) => {
     const handleReply = reply => {
         axios
             .post(
-                `http://localhost:8050/ideas/comments/`,
+                `${process.env.REACT_APP_SERVER}ideas/comments/`,
                 { data: reply, parentComment: comment.commentId },
                 {
                     headers: { authorization: token },

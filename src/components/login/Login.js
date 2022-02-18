@@ -13,7 +13,7 @@ const Login = () => {
 
     const responseGoogle = (googleResp, refreshCallback) => {
         axios
-            .post('http://localhost:8050/login/google', {
+            .post(`${process.env.REACT_APP_SERVER}login/google`, {
                 access_token: googleResp.tokenObj.access_token,
                 email: googleResp.profileObj.email,
                 expires_at: googleResp.tokenObj.expires_at,

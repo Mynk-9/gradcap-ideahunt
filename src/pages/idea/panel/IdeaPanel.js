@@ -7,18 +7,7 @@ import Pagination from '../../../components/pagination/Pagination';
 
 import Styles from '../Idea.module.scss';
 
-// import UserIcon from './../../../assets/icons/user-profile.svg';
 import InputSelect from './../../../components/inputselect/InputSelect';
-
-// const dummyIdea = {
-//     ideaId: 'abc',
-//     profile: { name: 'Mayank', photo: UserIcon },
-//     heading: 'Consumable plastic for saving the environment',
-//     likes: 50,
-//     comments: 5,
-//     details:
-//         'This idea can be developed by biologists and has been in talks for some time now, you can share your insights over this. This idea can be developed by biologists and has been in talks for some time now, you can share your insights over this.',
-// };
 
 const IdeaPanel = () => {
     let navigate = useNavigate();
@@ -30,7 +19,7 @@ const IdeaPanel = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:8050/ideas/count')
+            .get(`${process.env.REACT_APP_SERVER}ideas/count`)
             .then(resp => {
                 const ideaCount = parseInt(resp.data.count);
                 setPageCount(ideaCount / nPerPage);
@@ -40,7 +29,7 @@ const IdeaPanel = () => {
             });
 
         axios
-            .get('http://localhost:8050/ideas', {
+            .get(`${process.env.REACT_APP_SERVER}ideas`, {
                 params: {
                     page: pageNumber,
                     perPage: nPerPage,

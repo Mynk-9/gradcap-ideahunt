@@ -94,7 +94,7 @@ const ProfileEditDialog = ({ open, handleClose, userData, setUserData }) => {
 
         axios
             .post(
-                `http://localhost:8050/user/profile/${field}`,
+                `${process.env.REACT_APP_SERVER}user/profile/${field}`,
                 {
                     data: data,
                 },
@@ -238,7 +238,7 @@ const Profile = () => {
         }
 
         axios
-            .get(`http://localhost:8050/user/${locationUserId}`)
+            .get(`${process.env.REACT_APP_SERVER}user/${locationUserId}`)
             .then(resp => {
                 if (resp.status !== 200) {
                     console.log('Error fetching user data', resp.data);
@@ -253,7 +253,7 @@ const Profile = () => {
 
         // fetch user ideas
         axios
-            .get(`http://localhost:8050/ideas/user/${locationUserId}`)
+            .get(`${process.env.REACT_APP_SERVER}ideas/user/${locationUserId}`)
             .then(({ data }) => {
                 setUserIdeas(data.ideas);
             })

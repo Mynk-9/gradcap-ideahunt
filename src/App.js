@@ -42,7 +42,7 @@ const App = () => {
 
         axios
             .post(
-                'http://localhost:8050/login/google/verify',
+                `${process.env.REACT_APP_SERVER}login/google/verify`,
                 {},
                 {
                     headers: {
