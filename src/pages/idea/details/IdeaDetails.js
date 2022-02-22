@@ -217,6 +217,7 @@ const IdeaDetails = () => {
                 <div className={Styles.interactions}>
                     <img
                         src={liked ? LikedIcon : LikeIcon}
+                        style={liked ? { filter: 'none' } : {}}
                         onClick={likeIdea}
                     />
                     <img

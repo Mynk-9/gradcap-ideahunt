@@ -89,6 +89,7 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
                         <img
                             src={liked ? LikedIcon : LikeIcon}
                             alt="Like"
+                            style={liked ? { filter: 'none' } : {}}
                             onClick={likeIdea}
                         />
                         <span className={Styles.stats}>{likeCount}</span>

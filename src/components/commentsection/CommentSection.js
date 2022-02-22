@@ -172,6 +172,7 @@ const Comment = ({ comment, ideaId }) => {
                     <img
                         onClick={() => likeComment(comment.commentId)}
                         src={liked ? LikedIcon : LikeIcon}
+                        style={liked ? { filter: 'none' } : {}}
                     />
                 </div>
             </div>
