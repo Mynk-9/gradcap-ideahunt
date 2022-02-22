@@ -29,14 +29,14 @@ const RewardsCards = () => {
     return (
         <div className={Styles.rewardsSection}>
             <Card
-                text="Win some of the best books/ novels out there!"
-                icon={BooksIcon}
-            />
-            <Card
                 text="Get a chance to be featured by gradCapital on all social media handles"
                 icon={SocialIcon}
             />
             <Card text="Opportunity to pitch to us!" icon={PeopleIcon} />
+            <Card
+                text="Win some of the best books/ novels out there!"
+                icon={BooksIcon}
+            />
             <Card
                 text="Attain mentorship and guidance for some jaw-dropping ideas"
                 icon={TeacherIcon}

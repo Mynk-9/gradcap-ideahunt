@@ -34,8 +34,6 @@
         font-size: 1.875rem;
         text-align: center;
 
-        transform: rotateY(180deg);
-        opacity: 0;
         transition: transform var(--std-transition-time) ease,
             opacity var(--std-transition-time) ease;
 
@@ -53,6 +51,9 @@
 
         box-shadow: 0px 6px 9px #00000029;
 
+        transform: rotateY(180deg);
+        opacity: 0;
+
         transition: transform var(--std-transition-time) ease,
             opacity var(--std-transition-time) ease;
 
@@ -62,11 +63,11 @@
     }
 }
 .card:hover {
-    .text {
+    .image {
         transform: none;
         opacity: 1;
     }
-    .image {
+    .text {
         transform: rotateY(180deg);
         opacity: 0;
     }
