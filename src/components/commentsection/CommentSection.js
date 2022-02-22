@@ -10,6 +10,7 @@ import LikeIcon from './../../assets/icons/heart.svg';
 import LikedIcon from './../../assets/icons/heart-filled.svg';
 
 const timeDifference = (today, otherDay) => {
+    otherDay = new Date(otherDay).getTime();
     let difference = today - otherDay;
 
     let daysDifference = Math.floor(difference / 1000 / 60 / 60 / 24);
