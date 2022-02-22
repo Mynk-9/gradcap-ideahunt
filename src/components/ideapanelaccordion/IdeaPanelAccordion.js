@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
 import axios from 'axios';
 
+import ProfileImage from '../profileimage/ProfileImage';
+
 import Styles from './IdeaPanelAccordion.module.scss';
 
 import CommentIcon from './../../assets/icons/message-square.svg';
@@ -78,7 +80,10 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
                     <div
                         className={`${Styles.panelItem} ${Styles.profileItem}`}
                     >
-                        <img src={idea.profile.photo} alt="Profile image" />
+                        <ProfileImage
+                            src={idea.profile.photo}
+                            userId={idea.profile.userId}
+                        />
                     </div>
                     <div className={Styles.panelItem}>
                         <span className={Styles.brief}>{idea.heading}</span>
@@ -120,6 +125,7 @@ IdeaPanelAccordion.propTypes = {
         profile: propTypes.shape({
             name: propTypes.string,
             photo: propTypes.string,
+            userId: propTypes.string,
         }).isRequired,
         heading: propTypes.string.isRequired,
         likes: propTypes.number,

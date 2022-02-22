@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import axios from 'axios';
 
 import PostCommentDialog from './../../components/postcommentdialog/PostCommentDialog';
+import ProfileImage from '../profileimage/ProfileImage';
 
 import Styles from './CommentSection.module.scss';
 
@@ -122,7 +123,10 @@ const Comment = ({ comment, ideaId }) => {
         <div className={Styles.commentWrapper}>
             <div className={Styles.comment}>
                 <div className={Styles.profile}>
-                    <img src={comment.user.profileURL} />
+                    <ProfileImage
+                        src={comment.user.profileURL}
+                        userId={comment.user.userId}
+                    />
                 </div>
                 <div className={Styles.body}>
                     <div className={Styles.main}>
@@ -213,6 +217,7 @@ const commentProp = propTypes.shape({
     user: propTypes.shape({
         name: propTypes.string.isRequired,
         profileURL: propTypes.string,
+        userId: propTypes.string.isRequired,
     }),
     data: propTypes.string.isRequired,
     likes: propTypes.number.isRequired,

@@ -5,6 +5,7 @@ import IdeaPanelAccordion from '../../../components/ideapanelaccordion/IdeaPanel
 import Heading from './../../../components/heading/Heading';
 import CommentSection from './../../../components/commentsection/CommentSection';
 import RedLink from './../../../components/redlink/RedLink';
+import ProfileImage from '../../../components/profileimage/ProfileImage';
 
 import Styles from '../Idea.module.scss';
 
@@ -203,7 +204,10 @@ const IdeaDetails = () => {
             </div>
             <div className={Styles.ideaDetails}>
                 <div className={Styles.user}>
-                    <img src={idea?.profile?.photo} />
+                    <ProfileImage
+                        src={idea?.profile?.photo}
+                        userId={idea?.profile?.userId}
+                    />
                     <span className={Styles.header}>{idea?.profile?.name}</span>
                 </div>
                 <div className={Styles.idea}>
