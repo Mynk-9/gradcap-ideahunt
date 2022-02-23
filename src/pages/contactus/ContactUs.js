@@ -35,11 +35,26 @@ const ContactUs = () => {
                                 '• A strong idea/pitch/ brief or anything tangible to show'
                             }
                         </div>
-                        <button className={Styles.action} data-mobile-only>
+                        <button
+                            className={Styles.action}
+                            data-mobile-only
+                            onClick={() =>
+                                window.open(
+                                    'https://tally.so/r/wQzyXn',
+                                    '_blank'
+                                )
+                            }
+                        >
                             {'Apply'}
                         </button>
                     </div>
-                    <button className={Styles.action} data-pc-only>
+                    <button
+                        className={Styles.action}
+                        data-pc-only
+                        onClick={() =>
+                            window.open('https://tally.so/r/wQzyXn', '_blank')
+                        }
+                    >
                         {'Apply'}
                     </button>
                 </div>
@@ -50,11 +65,26 @@ const ContactUs = () => {
                                 "Think your idea is almost there but not sure how to proceed? Don't worry we've got your back."
                             }
                         </div>
-                        <button className={Styles.action} data-mobile-only>
+                        <button
+                            className={Styles.action}
+                            data-mobile-only
+                            onClick={() =>
+                                window.open(
+                                    'https://tally.so/r/wQzyXn',
+                                    '_blank'
+                                )
+                            }
+                        >
                             {'Let us know'}
                         </button>
                     </div>
-                    <button className={Styles.action} data-pc-only>
+                    <button
+                        className={Styles.action}
+                        data-pc-only
+                        onClick={() =>
+                            window.open('https://tally.so/r/wQzyXn', '_blank')
+                        }
+                    >
                         {'Let us know'}
                     </button>
                 </div>
@@ -66,11 +96,26 @@ const ContactUs = () => {
                                 '• We discuss about various start-ups, trends, what’s upcoming and strategies, etc.'
                             }
                         </div>
-                        <button className={Styles.action} data-mobile-only>
+                        <button
+                            className={Styles.action}
+                            data-mobile-only
+                            onClick={() =>
+                                window.open(
+                                    'https://tally.so/r/3E6Wow',
+                                    '_blank'
+                                )
+                            }
+                        >
                             {'Sign Up'}
                         </button>
                     </div>
-                    <button className={Styles.action} data-pc-only>
+                    <button
+                        className={Styles.action}
+                        data-pc-only
+                        onClick={() =>
+                            window.open('https://tally.so/r/3E6Wow', '_blank')
+                        }
+                    >
                         {'Sign Up'}
                     </button>
                 </div>
