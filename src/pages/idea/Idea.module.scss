@@ -116,10 +116,10 @@
     .header {
         font-size: 1.875rem;
         font-family: 'tex-bold';
+        color: var(--heading-color);
 
         @media screen and (max-width: 768px) {
-            // font-size: 0.625rem;
-            font-size: 0.75rem;
+            font-size: 0.875rem;
         }
     }
     .header + * {
