@@ -134,7 +134,7 @@ const App = () => {
                                 text: 'Login',
                                 mobileOnly: true,
                                 path: 'login',
-                                checkPaths: [/\/contact-us/g],
+                                checkPaths: [/\/login/g],
                             },
                         ]}
                         mobileVisible={true}
