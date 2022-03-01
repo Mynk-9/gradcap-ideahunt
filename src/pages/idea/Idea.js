@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import PrimarySection from '../../components/primarysection/PrimarySection';
 import Heading from '../../components/heading/Heading';
@@ -12,9 +12,13 @@ import Img4 from './../../assets/images/special-deals.svg';
 import RewardsCards from '../../components/rewardscards/RewardsCards';
 
 const IdeaPanel = () => {
+    const navigate = useNavigate();
+
     return (
         <PrimarySection hero={false} className={Styles.primarySectionModified}>
-            <Heading>{'Idea Panel'}</Heading>
+            <Heading onClick={() => navigate('/idea/panel')}>
+                {'Idea Panel'}
+            </Heading>
             <div className={Styles.pageColumnWrapper}>
                 <Outlet />
                 <div className={Styles.pageColumn} data-pc-only>
