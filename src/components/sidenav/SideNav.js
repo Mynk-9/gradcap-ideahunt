@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useRef } from 'react';
 import propTypes from 'prop-types';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -41,10 +41,20 @@ const SideNavButton = data => {
 const SideNav = ({ buttons, mobileVisible, pcVisible }) => {
     const { active, setActive } = useContext(SidenavContext);
     const [navActive, setNavActive] = useState(active);
+    const sideNavRef = useRef(null);
 
     useEffect(() => {
         setNavActive(active);
     }, [active]);
+
+    const focusLoseHandler = e => {
+        const { clientX: mouseX, clientY: mouseY } = e;
+        const { left, right, top, bottom } =
+            sideNavRef.current.getBoundingClientRect();
+
+        if (mouseX < left || right < mouseX || mouseY < top || bottom < mouseY)
+            setActive(false);
+    };
 
     let renderOptions = {};
     if (mobileVisible && !pcVisible) renderOptions['data-mobile-only'] = 'true';
@@ -53,19 +63,26 @@ const SideNav = ({ buttons, mobileVisible, pcVisible }) => {
 
     return (
         <div
-            className={Styles.sideNav}
-            {...renderOptions}
+            className={Styles.wrapper}
             data-active={navActive}
+            onClick={focusLoseHandler}
         >
-            <img
-                src={CloseIcon}
-                className={Styles.closeButton}
-                alt={'Close'}
-                onClick={() => setActive(false)}
-            />
-            {buttons.map(data => (
-                <SideNavButton {...data} key={data.text} />
-            ))}
+            <div
+                className={Styles.sideNav}
+                {...renderOptions}
+                data-active={navActive}
+                ref={sideNavRef}
+            >
+                <img
+                    src={CloseIcon}
+                    className={Styles.closeButton}
+                    alt={'Close'}
+                    onClick={() => setActive(false)}
+                />
+                {buttons.map(data => (
+                    <SideNavButton {...data} key={data.text} />
+                ))}
+            </div>
         </div>
     );
 };
