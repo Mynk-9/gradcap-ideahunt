@@ -59,6 +59,11 @@ const Comment = ({ comment, ideaId }) => {
     }, []);
 
     const likeComment = commentId => {
+        if (!token) {
+            alert('Please login to like comment.');
+            return;
+        }
+
         axios
             .post(
                 `${process.env.REACT_APP_SERVER}ideas/comments/${commentId}/like`,

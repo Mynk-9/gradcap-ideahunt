@@ -101,6 +101,11 @@ const IdeaDetails = () => {
     }, [location]);
 
     const likeIdea = () => {
+        if (!token) {
+            alert('Please login to like idea.');
+            return;
+        }
+
         axios
             .post(
                 `${process.env.REACT_APP_SERVER}ideas/${ideaId}/like`,

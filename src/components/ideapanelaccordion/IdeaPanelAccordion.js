@@ -36,7 +36,10 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
     }, []);
 
     const likeIdea = () => {
-        if (!token) return;
+        if (!token) {
+            alert('Please login to like idea.');
+            return;
+        }
 
         axios
             .post(
