@@ -9,72 +9,12 @@ import ProfileImage from '../../../components/profileimage/ProfileImage';
 
 import Styles from '../Idea.module.scss';
 
-import UserIcon from './../../../assets/icons/user-profile.svg';
 import LikeIcon from './../../../assets/icons/heart.svg';
 import LikedIcon from './../../../assets/icons/heart-filled.svg';
 import CommentIcon from './../../../assets/icons/message-square.svg';
 import ShareIcon from './../../../assets/icons/share.svg';
 import axios from 'axios';
 import PostCommentDialog from '../../../components/postcommentdialog/PostCommentDialog';
-
-const dummyIdea = {
-    ideaId: 'abc',
-    profile: { name: 'Prateek Behera', photo: UserIcon },
-    heading: 'Consumable plastic for saving the environment',
-    details:
-        'This idea can be developed by biologists and has been in talks for some time now, you can share your insights over this.' +
-        'This idea can be developed by biologists and has been in talks for some time now, you can share your insights over this.',
-    likes: 50,
-    comments: 8,
-    postedComments: [
-        {
-            poster: { name: 'Abhishek Sethi', photo: UserIcon },
-            comment:
-                'I think this idea is amazing and could be used for packaging',
-            likes: 5,
-            liked: false,
-            postTime: new Date().getTime() - 36000000,
-            comments: [
-                {
-                    poster: { name: 'Mayank Singh', photo: UserIcon },
-                    comment:
-                        'I think this idea is amazing and could be used for packaging',
-                    likes: 5,
-                    liked: false,
-                    postTime: new Date().getTime() - 36000000,
-                    comments: [],
-                },
-                {
-                    poster: { name: 'Mayank Singh', photo: UserIcon },
-                    comment: '@PrateekBehera What do you think?',
-                    likes: 5,
-                    liked: false,
-                    postTime: new Date().getTime() - 36000000,
-                    comments: [
-                        {
-                            poster: { name: 'Mayank Singh', photo: UserIcon },
-                            comment: '@PrateekBehera What do you think?',
-                            likes: 5,
-                            liked: false,
-                            postTime: new Date().getTime() - 36000000,
-                            comments: [],
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            poster: { name: 'Simran Handa', photo: UserIcon },
-            comment: 'What if we use corn starch for this?',
-            likes: 5,
-            liked: false,
-            postTime: new Date().getTime() - 36000000,
-            comments: [],
-        },
-    ],
-};
-
-const dummyIdeas = [dummyIdea, dummyIdea, dummyIdea];
 
 const getIdeaId = path => {
     path = path.split('/');
@@ -91,6 +31,7 @@ const IdeaDetails = () => {
     const [liked, setLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(0);
     const [commentDialog, openCommentDialog] = useState(false);
+    const [exploreMoreIdeas, setExploreMoreIdeas] = useState(null);
 
     const token = localStorage.getItem('g-token');
     let ideaId = getIdeaId(location.pathname);
@@ -137,11 +78,25 @@ const IdeaDetails = () => {
             .catch(err => console.log(err));
     };
 
+    const fetchExplore = () => {
+        axios
+            .get(`${process.env.REACT_APP_SERVER}ideas/explore`)
+            .then(resp => {
+                if (resp.status === 200) {
+                    setExploreMoreIdeas(resp.data.ideas);
+                } else console.log('Error at fetching explore.');
+            })
+            .catch(err => {
+                console.log('Error at fetching explore.', err);
+            });
+    };
+
     useEffect(() => {
         ideaId = getIdeaId(location.pathname);
 
         fetchIdea();
         fetchComments();
+        fetchExplore();
         if (token) fetchLiked();
     }, [location]);
 
@@ -245,12 +200,20 @@ const IdeaDetails = () => {
             </div>
             <Heading>{'Explore more Ideas'}</Heading>
             <div className={Styles.ideaListWrapper}>
-                {dummyIdeas.map((_idea, i) => (
-                    <IdeaPanelAccordion
-                        idea={_idea}
-                        key={`${_idea.heading}-${i}`}
-                    />
-                ))}
+                {exploreMoreIdeas ? (
+                    exploreMoreIdeas
+                        .filter(_idea => _idea.ideaId != ideaId)
+                        .slice(0, 3)
+                        .map(_idea => (
+                            <IdeaPanelAccordion
+                                idea={_idea}
+                                key={_idea.ideaId}
+                                featured={_idea.featured}
+                            />
+                        ))
+                ) : (
+                    <></>
+                )}
             </div>
             <RedLink
                 text={'Back'}
