@@ -56,8 +56,7 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
             .then(resp => {
                 if (resp.status !== 201) console.log('Error in liking idea');
                 else {
-                    if (resp.data.likeStatus) setLikeCount(val => val + 1);
-                    else setLikeCount(val => val - 1);
+                    setLikeCount(resp.data?.likes >= 0 ? resp.data.likes : 0);
                     setLiked(val => !val);
                 }
             })
