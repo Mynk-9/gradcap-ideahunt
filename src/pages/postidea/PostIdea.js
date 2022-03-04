@@ -69,6 +69,7 @@ const PostIdea = () => {
                 alert('Post created.');
                 setIdeaDesc('');
                 setIdeaName('');
+                navigate(`/idea/${resp.data._id}`);
             })
             .catch(err => {
                 alert('Error');
