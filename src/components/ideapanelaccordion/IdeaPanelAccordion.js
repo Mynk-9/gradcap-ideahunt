@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import propTypes from 'prop-types';
 import axios from 'axios';
 
@@ -17,8 +17,11 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
     const [active, setActive] = useState(false);
     const [liked, setLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(idea.likes);
-    const commentCount = parseInt(idea.comments);
+    const navigate = useNavigate();
+
     const token = localStorage.getItem('g-token');
+    const commentCount = parseInt(idea.comments);
+    const ideaDetailPage = `/idea/${idea.ideaId}`;
 
     useEffect(() => {
         if (!token) return;
@@ -35,7 +38,13 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
             .catch(err => console.log(err));
     }, []);
 
-    const likeIdea = () => {
+    const toggleOpen = e => {
+        e.stopPropagation();
+        setActive(isActive => !isActive);
+    };
+
+    const likeIdea = e => {
+        e.stopPropagation();
         if (!token) {
             alert('Please login to like idea.');
             return;
@@ -74,10 +83,10 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
             <div className={Styles.details}>
                 <div className={Styles.ideaDetails}>{idea.details}</div>
                 <span className={Styles.viewIdea}>
-                    <Link to={`/idea/${idea.ideaId}`}>{'View Idea'}</Link>
+                    <Link to={ideaDetailPage}>{'View Idea'}</Link>
                 </span>
             </div>
-            <div className={Styles.panel}>
+            <div className={Styles.panel} onClick={toggleOpen}>
                 <div className={Styles.panelSection}>
                     <div
                         className={`${Styles.panelItem} ${Styles.profileItem}`}
@@ -92,29 +101,38 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
                     </div>
                 </div>
                 <div className={Styles.panelSection}>
-                    <div className={Styles.panelItem}>
+                    <div className={Styles.panelItem} onClick={likeIdea}>
                         <img
                             src={liked ? LikedIcon : LikeIcon}
                             alt="Like"
                             style={liked ? { filter: 'none' } : {}}
-                            onClick={likeIdea}
                         />
                         <span className={Styles.stats}>{likeCount}</span>
                     </div>
-                    <div className={Styles.panelItem}>
+                    <div
+                        className={Styles.panelItem}
+                        onClick={e => {
+                            e.preventDefault();
+                            navigate(ideaDetailPage);
+                        }}
+                    >
                         <img src={CommentIcon} alt="Comment" />
                         <span className={Styles.stats}>{commentCount}</span>
                     </div>
-                    <div className={Styles.panelItem}>
+                    <div
+                        className={Styles.panelItem}
+                        onClick={e => {
+                            e.stopPropagation();
+                        }}
+                    >
                         <img src={ShareIcon} alt="Share" />
                         <span className={Styles.stats}>{'Share'}</span>
                     </div>
-                    <div className={Styles.panelItem}>
+                    <div className={Styles.panelItem} onClick={toggleOpen}>
                         <img
                             className={Styles.expandButton}
                             src={DetailsIcon}
                             alt="Details"
-                            onClick={() => setActive(prev => !prev)}
                         />
                     </div>
                 </div>

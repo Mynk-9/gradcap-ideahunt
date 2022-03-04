@@ -8,6 +8,8 @@
 
     font-size: 1.25rem;
 
+    user-select: none;
+
     @media screen and (max-width: 768px) {
         font-size: 0.75rem;
         margin-bottom: 0.313rem; // 5px
@@ -39,10 +41,16 @@
             display: flex;
             align-items: center;
             flex-direction: column;
-            padding-right: 2.625rem;
+            margin-right: 2.625rem;
+
+            cursor: pointer;
 
             @media screen and (max-width: 768px) {
-                padding-right: 1rem;
+                margin-right: 1rem;
+            }
+
+            &:last-child {
+                margin-right: 0;
             }
 
             .stats {
@@ -75,10 +83,10 @@
         }
 
         .panelItem.profileItem {
-            padding-right: 1.625rem;
+            margin-right: calc(2.625rem + 1.625rem);
 
             @media screen and (max-width: 768px) {
-                padding-right: 0.5rem;
+                margin-right: calc(1rem + 0.5rem);
             }
 
             img {
@@ -92,12 +100,10 @@
                 }
             }
         }
-        .panelItem:last-child {
-            padding-right: 0;
-        }
 
         .brief {
             font-weight: bold;
+            cursor: default;
         }
     }
 
