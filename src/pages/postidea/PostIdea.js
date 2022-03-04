@@ -24,9 +24,9 @@ const PostIdea = () => {
     });
 
     const [ideaName, setIdeaName] = useState('');
-    const [nameValid, setNameValid] = useState('true');
+    const [nameValid, setNameValid] = useState(true);
     const [ideaDesc, setIdeaDesc] = useState('');
-    const [descValid, setDescValid] = useState('true');
+    const [descValid, setDescValid] = useState(true);
 
     const nameSizeLimit = 50;
     const descSizeLimit = 100;
@@ -34,15 +34,15 @@ const PostIdea = () => {
     const handleIdeaNameChange = e => {
         const name = e.target.value;
         setIdeaName(name);
-        if (name.length > nameSizeLimit) setNameValid('false');
-        else setNameValid('true');
+        if (name.length > nameSizeLimit) setNameValid(false);
+        else setNameValid(true);
     };
 
     const handleIdeaDescChange = e => {
         const desc = e.target.value;
         setIdeaDesc(desc);
-        if (desc.length > descSizeLimit) setDescValid('false');
-        else setDescValid('true');
+        if (desc.length > descSizeLimit) setDescValid(false);
+        else setDescValid(true);
     };
 
     const handleSubmit = () => {
@@ -113,9 +113,9 @@ const PostIdea = () => {
                     <RedButton
                         text={'Post'}
                         onClick={() => {
-                            if (nameValid === 'true' && descValid === 'true')
+                            if (nameValid === true && descValid === true)
                                 handleSubmit();
-                            alert('Please enter valid data.');
+                            else alert('Please enter valid data.');
                         }}
                         classNames={[Styles.postButton]}
                     />
