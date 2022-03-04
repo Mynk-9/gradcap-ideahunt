@@ -8,6 +8,7 @@ import ProfileImage from '../profileimage/ProfileImage';
 import Styles from './IdeaPanelAccordion.module.scss';
 
 import CommentIcon from './../../assets/icons/message-square.svg';
+import CommentIconActive from './../../assets/icons/message-square-outline-active.svg';
 import LikeIcon from './../../assets/icons/heart.svg';
 import LikedIcon from './../../assets/icons/heart-filled.svg';
 import ShareIcon from './../../assets/icons/share.svg';
@@ -116,7 +117,15 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
                             navigate(ideaDetailPage);
                         }}
                     >
-                        <img src={CommentIcon} alt="Comment" />
+                        <img
+                            src={
+                                commentCount > 0
+                                    ? CommentIconActive
+                                    : CommentIcon
+                            }
+                            alt="Comment"
+                            data-filter={commentCount === 0}
+                        />
                         <span className={Styles.stats}>{commentCount}</span>
                     </div>
                     <div
