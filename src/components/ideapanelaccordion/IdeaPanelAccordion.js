@@ -107,6 +107,7 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
                     </div>
                     <div className={Styles.panelItem}>
                         <img src={ShareIcon} alt="Share" />
+                        <span className={Styles.stats}>{'Share'}</span>
                     </div>
                     <div className={Styles.panelItem}>
                         <img
