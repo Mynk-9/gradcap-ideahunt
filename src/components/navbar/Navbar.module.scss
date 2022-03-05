@@ -45,6 +45,7 @@
         justify-content: flex-start;
 
         img {
+            cursor: pointer;
             // height: 5rem; // 80px -> should be the val acc to design params
             height: 3.5rem; // more design lookalike
             @media screen and (max-width: 768px) {

@@ -32,7 +32,11 @@ const Navbar = () => {
                 />
             </div>
             <div className={`${Styles.item} ${Styles.logo}`}>
-                <img src={IdeaHuntLogo} alt={'Idea Hunt Logo'} />
+                <img
+                    src={IdeaHuntLogo}
+                    alt={'Idea Hunt Logo'}
+                    onClick={() => navigate('/home')}
+                />
             </div>
             <div className={Styles.item} data-pc-only>
                 <span
