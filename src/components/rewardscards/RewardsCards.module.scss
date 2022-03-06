@@ -11,6 +11,7 @@
     height: 22rem;
     background: #7780a0 0% 0% no-repeat padding-box;
     border-radius: 1.25rem;
+    box-shadow: 0px 6px 9px #00000029;
     margin: 1rem;
 
     & > * {
@@ -56,8 +57,6 @@
         transition: transform var(--std-transition-time) ease,
             opacity var(--std-transition-time) ease;
 
-        box-shadow: 0px 6px 9px #00000029;
-
         @media screen and (max-width: 768px) {
             font-size: 0.625rem;
             padding: 0 0.3rem;
@@ -67,8 +66,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
-        box-shadow: 0px 6px 9px #00000029;
 
         transform: none;
         opacity: 1;
