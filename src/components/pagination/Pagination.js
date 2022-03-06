@@ -33,6 +33,19 @@ const Pagination = ({ totalPages, onPageChange }) => {
             <button className={Styles.pageNumber} onClick={() => changePage(1)}>
                 {'<<'}
             </button>
+            {index[0] > 1 ? (
+                <>
+                    <button
+                        className={`${Styles.pageNumber} ${Styles.nextPage}`}
+                        onClick={() => changePage(Math.max(currentPage - 1, 1))}
+                    >
+                        {'Previous page'}
+                    </button>
+                    <span className={Styles.dotDot}>{'...'}</span>
+                </>
+            ) : (
+                <></>
+            )}
             {index.map(pageIndex => (
                 <button
                     className={Styles.pageNumber}
@@ -43,15 +56,21 @@ const Pagination = ({ totalPages, onPageChange }) => {
                     {pageIndex}
                 </button>
             ))}
-            <span className={Styles.dotDot}>{'...'}</span>
-            <button
-                className={`${Styles.pageNumber} ${Styles.nextPage}`}
-                onClick={() =>
-                    changePage(Math.min(currentPage + 1, totalPages))
-                }
-            >
-                {'Next page'}
-            </button>
+            {index[index.length - 1] < totalPages ? (
+                <>
+                    <span className={Styles.dotDot}>{'...'}</span>
+                    <button
+                        className={`${Styles.pageNumber} ${Styles.nextPage}`}
+                        onClick={() =>
+                            changePage(Math.min(currentPage + 1, totalPages))
+                        }
+                    >
+                        {'Next page'}
+                    </button>
+                </>
+            ) : (
+                <></>
+            )}
             <button
                 className={Styles.pageNumber}
                 onClick={() => changePage(totalPages)}

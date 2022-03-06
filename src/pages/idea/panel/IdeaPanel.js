@@ -22,7 +22,7 @@ const IdeaPanel = () => {
             .get(`${process.env.REACT_APP_SERVER}ideas/count`)
             .then(resp => {
                 const ideaCount = parseInt(resp.data.count);
-                setPageCount(ideaCount / nPerPage);
+                setPageCount(Math.ceil(ideaCount / nPerPage));
             })
             .catch(error => {
                 console.log('Page count fetch error', error);
