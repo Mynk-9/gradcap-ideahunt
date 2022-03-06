@@ -26,9 +26,7 @@ const LoginPage = () => {
         <div className={Styles.wrapper} onClick={handleExit}>
             <div className={Styles.box} ref={boxRef}>
                 <Heading>
-                    <span style={{ color: 'white' }}>
-                        {'Login with Google'}
-                    </span>
+                    <span style={{ color: 'white' }}>{'Login'}</span>
                 </Heading>
                 <Login />
             </div>

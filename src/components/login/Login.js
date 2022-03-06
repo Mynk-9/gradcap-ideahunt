@@ -7,6 +7,8 @@ import { GoogleLogin } from 'react-google-login';
 import LoginContext from '../../contexts/LoginContext';
 import { refreshTokenSetup } from '../../utilities/refreshGOAuthToken';
 
+import Styles from './Login.module.scss';
+
 const Login = () => {
     const { setLoginData } = useContext(LoginContext);
     const navigate = useNavigate();
@@ -43,6 +45,15 @@ const Login = () => {
                 onSuccess={responseGoogle}
                 isSignedIn={true}
                 cookiePolicy={'single_host_origin'}
+                render={renderProps => (
+                    <button
+                        onClick={renderProps.onClick}
+                        disabled={renderProps.disabled}
+                        className={Styles.loginButton}
+                    >
+                        {'Sign in with Google'}
+                    </button>
+                )}
             />
         </>
     );
