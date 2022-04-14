@@ -90,7 +90,12 @@ const ContactUs = () => {
                 </div>
                 <div className={Styles.cardWrapper}>
                     <div className={Styles.card}>
-                        <div>{'Want to join the gradCapital Community?'}</div>
+                        <div>
+                            {'Want to join the gradCapital '}
+                            <span className={Styles.emphasis}>
+                                {'Community?'}
+                            </span>
+                        </div>
                         <div>
                             {
                                 '• We discuss about various start-ups, trends, what’s upcoming and strategies, etc.'

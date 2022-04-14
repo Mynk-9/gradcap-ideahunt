@@ -28,7 +28,7 @@
             height: 33.125rem;
             text-align: center;
             font-size: 1.25rem;
-            padding: 0 4.75rem;
+            padding: 0 3rem;
             margin-bottom: 1.875rem;
             box-shadow: 0px 3px 6px #00000029;
             border-radius: 1.375rem;
@@ -46,6 +46,7 @@
             div:first-child {
                 font-family: 'tex-bold';
                 margin-bottom: 1.25rem;
+                font-size: 1.5rem;
 
                 @media screen and (max-width: 768px) {
                     font-size: 0.875rem;
@@ -69,6 +70,8 @@
             vertical-align: middle;
             margin: 0;
             border-radius: 0.5rem;
+
+            cursor: pointer;
 
             @media screen and (max-width: 768px) {
                 width: fit-content;
