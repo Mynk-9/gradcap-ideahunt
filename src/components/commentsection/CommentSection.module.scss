@@ -47,9 +47,13 @@
 
                     .person {
                         font-family: 'tex-bold';
+                        overflow-wrap: break-word;
                     }
                     .person::after {
                         content: '  ';
+                    }
+                    .text {
+                        overflow-wrap: anywhere;
                     }
                 }
                 .stats {
