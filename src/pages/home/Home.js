@@ -11,7 +11,11 @@ import ProfileIcon from './../../assets/icons/user-profile.svg';
 import Rewards from './../../assets/images/special-deals.svg';
 import IdeaHuntLogo from './../../assets/icons/idea-hunt.png';
 import HeroArt from './../../assets/images/growth-2.svg';
-import UserFlow from './../../assets/images/user-flow.png';
+import UserFlow1 from './../../assets/images/user-flow-1.png';
+import UserFlow2 from './../../assets/images/user-flow-2.png';
+import UserFlow3 from './../../assets/images/user-flow-3.png';
+import UserFlow4 from './../../assets/images/user-flow-4.png';
+import UserFlow5 from './../../assets/images/user-flow-5.png';
 import RewardsCards from '../../components/rewardscards/RewardsCards';
 
 const Home = () => {
@@ -55,7 +59,24 @@ const Home = () => {
             <div className={Styles.contentWrapper}>
                 <div className={Styles.chainSection}>
                     <div>
-                        <img src={UserFlow} />
+                        <img
+                            src={UserFlow1}
+                            onClick={() => navigate('/login')}
+                        />
+                        <img
+                            src={UserFlow2}
+                            onClick={() => navigate('/post-idea')}
+                        />
+                        <img
+                            src={UserFlow3}
+                            onClick={() => navigate('/idea/panel')}
+                        />
+                        <a href="#rewards-section">
+                            <img src={UserFlow4} />
+                        </a>
+                        <a href="#rewards-section">
+                            <img src={UserFlow5} />
+                        </a>
                     </div>
                     <div>
                         <RedButton
@@ -66,7 +87,7 @@ const Home = () => {
                 </div>
                 <Heading>{'Monthly Winners'}</Heading>
                 <div className={Styles.monthlyWinners}>{_cards}</div>
-                <div className={Styles.rewards}>
+                <div className={Styles.rewards} id="rewards-section">
                     <div className={Styles.message}>
                         <Heading>{'Rewards'}</Heading>
                         <p>
