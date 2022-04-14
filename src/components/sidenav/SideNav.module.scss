@@ -15,7 +15,8 @@
     flex-direction: column;
 
     // min-width: 17rem; // 270 was mean of 311 and 230, 272 is 17rem
-    min-width: 15vw;
+    // min-width: 15vw;
+    max-width: 15vw;
     padding: 3.375rem;
 
     @media screen and (max-width: 768px) {
@@ -26,6 +27,9 @@
         height: 100%;
         padding: 0;
         z-index: 10;
+
+        max-width: none;
+        min-width: 15vw;
 
         background-color: var(--side-nav-back-color);
     }

@@ -4,6 +4,8 @@
     background-color: var(--section-color);
     color: var(--text-color);
 
+    max-width: 70vw;
+
     padding: 3rem;
     padding-top: 8rem; // 129px -> 128px = 8rem
     padding-left: 4.875rem; // 78px
@@ -12,6 +14,7 @@
     @media screen and (max-width: 768px) {
         position: relative;
         width: 100vw;
+        max-width: none;
         padding: 0 1rem;
         border-radius: 0;
     }
