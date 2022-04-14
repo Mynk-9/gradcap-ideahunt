@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Heading from '../../components/heading/Heading';
 import PrimarySection from '../../components/primarysection/PrimarySection';
 import RedButton from '../../components/redbutton/RedButton';
-import RedLink from '../../components/redlink/RedLink';
+// import RedLink from '../../components/redlink/RedLink';
 
 import Styles from './Home.module.scss';
 
@@ -78,7 +78,7 @@ const Home = () => {
                     <img src={Rewards} />
                 </div>
                 <RewardsCards />
-                <RedLink text={'Go to Idea Panel'} link={'/idea/panel'} />
+                {/* <RedLink text={'Go to Idea Panel'} link={'/idea/panel'} /> */}
             </div>
         </PrimarySection>
     );
