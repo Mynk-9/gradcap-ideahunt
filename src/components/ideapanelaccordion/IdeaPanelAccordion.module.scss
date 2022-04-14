@@ -35,6 +35,11 @@
             display: flex;
             flex-direction: row;
             align-items: center;
+
+            &:first-child {
+                // for ellipses on text overflow of idea title
+                min-width: 0;
+            }
         }
 
         .panelItem {
@@ -101,9 +106,20 @@
             }
         }
 
+        .panelItem.ideaTitlePanelItem {
+            // for ellipses on text overflow of idea title
+            min-width: 0;
+        }
+
         .brief {
             font-weight: bold;
             cursor: default;
+
+            // for ellipses on text overflow of idea title
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 

@@ -97,7 +97,9 @@ const IdeaPanelAccordion = ({ idea, featured }) => {
                             userId={idea.profile.userId}
                         />
                     </div>
-                    <div className={Styles.panelItem}>
+                    <div
+                        className={`${Styles.panelItem} ${Styles.ideaTitlePanelItem}`}
+                    >
                         <span className={Styles.brief}>{idea.heading}</span>
                     </div>
                 </div>
