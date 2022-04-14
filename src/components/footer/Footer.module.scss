@@ -41,6 +41,7 @@
             filter: invert(1);
             width: 2rem;
             margin-right: 2rem;
+            cursor: pointer;
 
             @media screen and (max-width: 768px) {
                 width: 0.75rem;

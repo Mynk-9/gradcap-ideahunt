@@ -14,9 +14,33 @@ const Footer = () => {
             </div>
             <div className={Styles.sectionLinks}>
                 <img className={Styles.logo} src={GradCapitalLogo} />
-                <img src={TwitterIcon} />
-                <img src={LinkedinIcon} />
-                <img src={InstagramIcon} />
+                <img
+                    src={TwitterIcon}
+                    onClick={() => {
+                        window.open(
+                            'https://twitter.com/gradcapital',
+                            '_blank'
+                        );
+                    }}
+                />
+                <img
+                    src={LinkedinIcon}
+                    onClick={() => {
+                        window.open(
+                            'https://www.linkedin.com/company/gradcapital',
+                            '_blank'
+                        );
+                    }}
+                />
+                <img
+                    src={InstagramIcon}
+                    onClick={() => {
+                        window.open(
+                            'https://www.instagram.com/gradcapital/',
+                            '_blank'
+                        );
+                    }}
+                />
             </div>
         </footer>
     );
